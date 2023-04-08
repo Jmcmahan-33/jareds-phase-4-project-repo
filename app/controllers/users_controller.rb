@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
     skip_before_action :authorize, only: :create
+    # may take out line 4, just testing.
     skip_before_action :authorize, only: :index
 
     def index
         users = User.all
         render json: users
     end 
+
+    # signup 
     def create
         # create the user(signup)
         user = User.create!(user_params)
@@ -15,6 +18,11 @@ class UsersController < ApplicationController
         render json: user, status: :created
 
     end
+
+    def show
+        # get current user 
+        # render json 
+    end 
 
     private
     def user_params
