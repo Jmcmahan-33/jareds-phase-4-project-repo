@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
-import { UserContext } from "./context/user";
+// before refactor of login and signup 
 
-function Home() {
-    const { user } = useContext(UserContext)
-    if (!user || user.error ) {
-        return (<h3>Please login or sign up</h3>)
-    } else {
-        return (
-            <div>
-                <h1>{user.full_name}</h1>
-            </div>
-        )
-    }
-}
+// import React, { useContext } from "react";
+// import { UserContext } from "./context/user";
 
-export default Home
+// function Home() {
+//     const { user } = useContext(UserContext)
+//     if (!user || user.error ) {
+//         return (<h3>Please login or sign up</h3>)
+//     } else {
+//         return (
+//             <div>
+//                 <h1>{user.full_name}</h1>
+//             </div>
+//         )
+//     }
+// }
+
+// export default Home
