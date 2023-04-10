@@ -11,6 +11,7 @@ function UserProvider({children}) {
         .then(res => res.json())
         .then(data => {
             setUser(data)
+            console.log("DATA", data)
         })
 
     }, [])

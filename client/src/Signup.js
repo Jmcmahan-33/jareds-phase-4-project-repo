@@ -1,3 +1,15 @@
+import React, {useContext, useState} from "react"
+import { UserContext } from "./context/user"
+// provide useContext 
+
+
+    // full_name
+    // age 
+    // username
+    // password
+    // password confirmation
+
+
 function Signup() {
 
     return (
