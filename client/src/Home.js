@@ -24,25 +24,22 @@ import { UserContext } from "./context/user";
 // }
 function Home() {
 
-    
+
     const { user, loggedIn } = useContext(UserContext)
 
     console.log("USER", user)
-    if (!loggedIn) {
+    if (loggedIn) {
         return (
             <div>
-                <h1>MyHealth</h1>
-                <h2>Sign up or Log In</h2>
+                <h1>{user.username} Homepage</h1>
             </div>
         )
     } else {
         return (
             <div>
-                <h1>{user.username} Homepage</h1>
-                
+                {/* <h1>MyHealth</h1> */}
+                <h2>Sign up or Log In</h2>
             </div>
-
-
         )
     }
 }
