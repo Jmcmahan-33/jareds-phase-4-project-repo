@@ -15,7 +15,8 @@ function Home() {
     } else {
         return (
             <div>
-                <h1>Sign up or Log In</h1>
+                <h1>MyHealth</h1>
+                <h2>Sign up or Log In</h2>
             </div>
 
         )

@@ -45,7 +45,7 @@ function NavBar() {
 
     return (
         <div>
-          {loggedIn ? (<div><h1>HELLO {user.username}</h1><button onClick={logoutUser}>Logout</button></div>) 
+          {loggedIn ? (<div><h1>Hello: {user.username}</h1><button onClick={logoutUser}>Logout</button></div>) 
           : (<div> <NavLink to='/login'><button>Log in</button></NavLink><NavLink to='/signup'><button>Sign up</button></NavLink></div>) }
         </div>
         
