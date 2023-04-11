@@ -23,8 +23,12 @@ import { UserContext } from "./context/user";
 //     }
 // }
 function Home() {
+
+    
     const { user, loggedIn } = useContext(UserContext)
-    if (!user) {
+
+    console.log("USER", user)
+    if (!loggedIn) {
         return (
             <div>
                 <h1>MyHealth</h1>
@@ -35,6 +39,7 @@ function Home() {
         return (
             <div>
                 <h1>{user.username} :User Homepage</h1>
+                
             </div>
 
 
@@ -42,5 +47,7 @@ function Home() {
     }
 }
 
+
+// Object.keys(user).length === 0
 
 export default Home

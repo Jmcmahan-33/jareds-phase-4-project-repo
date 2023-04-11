@@ -66,7 +66,7 @@ function Signup() {
                 <label>Confirm Password: </label>
                 <input
                 type="password"
-                id="password"
+                id="confirmpassword"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 /> <br/>
