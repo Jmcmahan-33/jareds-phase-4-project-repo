@@ -38,7 +38,7 @@ function Home() {
     } else {
         return (
             <div>
-                <h1>{user.username} :User Homepage</h1>
+                <h1>{user.username} Homepage</h1>
                 
             </div>
 

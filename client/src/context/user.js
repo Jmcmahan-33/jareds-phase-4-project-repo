@@ -17,7 +17,7 @@ function UserProvider({ children }) {
                 // if errors come back from route then set logged state to false(didnt get a user back)
                 // otherwise if there is a user back from the route then true 
                 // checks the show route if there is a user in the session hash. 
-                // data.error ? setLoggedIn(false) : setLoggedIn(true)
+                data.error ? setLoggedIn(false) : setLoggedIn(true)
                 console.log("DATA", data)
             })
 

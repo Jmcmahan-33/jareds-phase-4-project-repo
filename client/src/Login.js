@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react"
 import { UserContext } from "./context/user"
+import { useNavigate } from "react-router-dom"
 // provide useContext 
 
 function Login() {
@@ -7,9 +8,18 @@ function Login() {
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const { login } = useContext(UserContext)
+    const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        fetch('/login', {
+           method: 'POST',
+           headers: {'Content-Type': 'Application/json' },
+           body: JSON.stringify({username, password})
+        })
+
     }
 
 

@@ -24,6 +24,7 @@ class UsersController < ApplicationController
         user = User.find_by(id:session[:user_id])
         # render json 
         render json: user
+        # render json: @current_user
     end 
 
     private
