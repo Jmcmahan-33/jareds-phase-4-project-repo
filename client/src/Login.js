@@ -9,18 +9,31 @@ function Login() {
     const [error, setError] = useState("")
     const { login } = useContext(UserContext)
     const navigate = useNavigate()
-    const [isLoading, setIsLoading] = useState(false);
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
         fetch('/login', {
-           method: 'POST',
-           headers: {'Content-Type': 'Application/json' },
-           body: JSON.stringify({username, password})
+            method: 'POST',
+            headers: { 'Content-Type': 'Application/json' },
+            body: JSON.stringify({ username, password })
         })
+            .then(res => res.json())
+            .then((user) => {
+                console.log("usertesting", user)
+                if (!user.error) {
+                    login(user)
+                    navigate('/')
+                } else {
+                    setUserName("")
+                    setPassword("")
+                    const errorLi = <li>{user.error}</li>
+                    setError(errorLi)
+                }
+            })
 
     }
+    console.log("login error", error)
 
 
     return (

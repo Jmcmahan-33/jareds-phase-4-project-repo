@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 function NavBar() {
     // provide context from user context file 
-    const {user, logout, loggedIn} = useContext(UserContext)
+    const { user, logout, loggedIn } = useContext(UserContext)
     const navigate = useNavigate()
 
     // create logged out function
@@ -23,33 +23,36 @@ function NavBar() {
             })
     }
 
-    // if (loggedIn) {
-    //     return (
-    //         <div>
-    //             <h1>HELLO {user.username}</h1>
-    //             <button onClick={logoutUser}>Log out</button>
-    //         </div>
+    if (loggedIn) {
+        return (
+            <div>
+                <h1>HELLO {user.username}</h1>
+                <button onClick={logoutUser}>Log out</button>
+            </div>
 
-    //     )
+        )
+    } else {
+        return (
+            <div>
+                <NavLink to='/login'>
+                    <button>Log in</button>
+                </NavLink>
+                <NavLink to='/signup'>
+                    <button>Sign up</button>
+                </NavLink>
+            </div>
 
-    // } else {
+        )
+
+    }
+
+    // return (
     //     <div>
-    //         <NavLink to='/login'>
-    //             <button>Log in</button>
-    //         </NavLink>
-    //         <NavLink to='/signup'>
-    //             <button>Sign up</button>
-    //         </NavLink>
+    //       {loggedIn ? (<div><h1>Hello: {user.username}</h1><button onClick={logoutUser}>Logout</button></div>) 
+    //       : (<div> <NavLink to='/login'><button>Log in</button></NavLink><NavLink to='/signup'><button>Sign up</button></NavLink></div>) }
     //     </div>
-    // }
 
-    return (
-        <div>
-          {loggedIn ? (<div><h1>Hello: {user.username}</h1><button onClick={logoutUser}>Logout</button></div>) 
-          : (<div> <NavLink to='/login'><button>Log in</button></NavLink><NavLink to='/signup'><button>Sign up</button></NavLink></div>) }
-        </div>
-        
-    )
+    // )
 }
 
 export default NavBar

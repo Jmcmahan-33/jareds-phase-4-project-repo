@@ -18,10 +18,12 @@ function UserProvider({ children }) {
                 // otherwise if there is a user back from the route then true 
                 // checks the show route if there is a user in the session hash. 
                 data.error ? setLoggedIn(false) : setLoggedIn(true)
-                console.log("DATA", data)
+                
             })
 
     }, [])
+
+    console.log("Logged In", loggedIn)
 
     const login = (user) => {
         // set user to context
