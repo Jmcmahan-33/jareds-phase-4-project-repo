@@ -1,19 +1,25 @@
 // before refactor of login and signup 
 
-// import React, { useContext } from "react";
-// import { UserContext } from "./context/user";
+import React, { useContext } from "react";
+import { UserContext } from "./context/user";
 
-// function Home() {
-//     const { user } = useContext(UserContext)
-//     if (!user || user.error ) {
-//         return (<h3>Please login or sign up</h3>)
-//     } else {
-//         return (
-//             <div>
-//                 <h1>{user.full_name}</h1>
-//             </div>
-//         )
-//     }
-// }
+function Home() {
+    const { user, loggedIn } = useContext(UserContext)
+    if (loggedIn) {
+        return (
 
-// export default Home
+            <div>
+                <h1>{user.full_name}</h1>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <h1>Sign up or Log In</h1>
+            </div>
+
+        )
+    }
+}
+
+export default Home
