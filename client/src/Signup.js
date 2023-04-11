@@ -16,7 +16,7 @@ function Signup() {
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errorsList, setErrorsList] = useState([])
-    const [signup] = useContext(UserContext)
+    const {signup} = useContext(UserContext)
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
@@ -67,8 +67,8 @@ function Signup() {
                 <input
                 type="password"
                 id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
                 /> <br/>
                 <input type="submit"/>
             </form>
