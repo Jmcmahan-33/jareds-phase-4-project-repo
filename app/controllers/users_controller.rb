@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     end
 end
 
-
+# lines below are for show if needed. 
 # if user
 #     render json: user
 # else
