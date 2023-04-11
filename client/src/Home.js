@@ -9,7 +9,7 @@ function Home() {
         return (
 
             <div>
-                <h1>{user.full_name}</h1>
+                <h1>{user.username}</h1>
             </div>
         )
     } else {
