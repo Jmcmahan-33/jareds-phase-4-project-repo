@@ -1,6 +1,9 @@
 import React, {useContext, useState} from "react"
 import { UserContext } from "./context/user"
 import { useNavigate } from "react-router-dom"
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button'
 // provide useContext 
 
 
@@ -70,7 +73,9 @@ function Signup() {
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 /> <br/>
-                <input type="submit"/>
+                <Button type="submit" variant="contained">
+                    Sign up
+                </Button>
             </form>
             <ul>
                 {errorsList}
