@@ -3,25 +3,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "./context/user";
 
-// function Home() {
-//     const { user, loggedIn } = useContext(UserContext)
-//     if (loggedIn) {
-//         return (
-
-//             <div>
-//                 <h1>{user.username} Homepage</h1>
-//             </div>
-//         )
-//     } else {
-//         return (
-//             <div>
-//                 <h1>MyHealth</h1>
-//                 <h2>Sign up or Log In</h2>
-//             </div>
-
-//         )
-//     }
-// }
 function Home() {
 
 
@@ -37,7 +18,7 @@ function Home() {
     } else {
         return (
             <div>
-                {/* <h1>MyHealth</h1> */}
+                <h1>My Doc App</h1>
                 <h2>Sign up or Log In</h2>
             </div>
         )
