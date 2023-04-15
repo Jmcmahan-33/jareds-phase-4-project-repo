@@ -8,20 +8,45 @@ function UserProvider({ children }) {
     // set state to empty object to get it. 
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
+    const [doctors, setDoctors] = useState([])
 
     useEffect(() => {
         fetch('/me')
             .then(res => res.json())
             .then(data => {
                 setUser(data)
-                // if errors come back from route then set logged state to false(didnt get a user back)
-                // otherwise if there is a user back from the route then true 
-                // checks the show route if there is a user in the session hash. 
-                data.errors ? setLoggedIn(false) : setLoggedIn(true)
-                
+                if(data.errors) {
+                    // if there is not a user
+                    setLoggedIn(false)
+                } else {
+                    // if there is a user 
+                    setLoggedIn(true)
+                    fetchDoctors()
+                }
+                // data.errors ? setLoggedIn(false) : setLoggedIn(true)
             })
-
     }, [])
+
+    const fetchDoctors = () => {
+        fetch('/doctors')
+            .then(res => res.json())
+            .then(data => {
+                console.log("Doctors!",data)
+                setDoctors(data)
+            })
+    }
+
+    const addDoctor = (newDoctor) => {
+        fetch('doctors', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(newDoctor)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setDoctors([...doctors, data])
+        })
+    }
 
     console.log("Logged In", loggedIn)
 
@@ -48,7 +73,7 @@ function UserProvider({ children }) {
 
 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn }}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor}}>
             {children}
         </UserContext.Provider>
     )

@@ -6,6 +6,8 @@ import { UserProvider } from "./context/user"
 import Home from './Home';
 import Signup from './Signup'
 import Login from './Login'
+import Doctors from './Doctors';
+import DoctorForm from './DoctorForm';
 
 function App() {
   return (
@@ -13,9 +15,11 @@ function App() {
       <UserProvider>
         {/* may put navbar back */}
         <Routes>
-          <Route exact path="/" element={<Home/>} />
-          <Route  path="/signup" element={<Signup/>} />
-          <Route  path="/login" element={<Login/>} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/doctors" element={<Doctors />} />
+          <Route path='/doctor-form' element={<DoctorForm />} />
         </Routes>
         <NavBar />
       </UserProvider>
