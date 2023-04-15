@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 function NavBar() {
     // provide context from user context file 
@@ -25,9 +26,9 @@ function NavBar() {
 
     if (loggedIn) {
         return (
-            <div>
-                <h1>HELLO {user.username}</h1>
-                <button onClick={logoutUser}>Log out</button>
+            <div className="user-name">
+                <h3>HELLO {user.username}</h3>
+                <Button variant= "text" onClick={logoutUser}>Log out</Button>
             </div>
 
         )
@@ -35,10 +36,10 @@ function NavBar() {
         return (
             <div>
                 <NavLink to='/login'>
-                    <button>Log in</button>
+                    <Button variant="text">Log in</Button>
                 </NavLink>
                 <NavLink to='/signup'>
-                    <button>Sign up</button>
+                    <Button variant="text">Sign up</Button>
                 </NavLink>
             </div>
 

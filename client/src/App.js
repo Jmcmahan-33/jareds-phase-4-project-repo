@@ -11,12 +11,13 @@ function App() {
   return (
     <div className="App">
       <UserProvider>
-        <NavBar />
+        {/* may put navbar back */}
         <Routes>
           <Route exact path="/" element={<Home/>} />
           <Route  path="/signup" element={<Signup/>} />
           <Route  path="/login" element={<Login/>} />
         </Routes>
+        <NavBar />
       </UserProvider>
     </div>
   );

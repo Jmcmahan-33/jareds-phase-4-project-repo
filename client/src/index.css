@@ -16,3 +16,13 @@ code {
 body {
   background-color: aliceblue;
 }
+
+.text-style {
+  font-family: sans-serif;
+  /* color:blue */
+}
+
+.user-name {
+  text-align: left;
+  font-family: sans-serif;
+}

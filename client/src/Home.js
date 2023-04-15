@@ -11,13 +11,13 @@ function Home() {
     console.log("USER", user)
     if (loggedIn) {
         return (
-            <div>
+            <div className="text-style">
                 <h1>{user.username} Homepage</h1>
             </div>
         )
     } else {
         return (
-            <div>
+            <div className="text-style">
                 <h1>My Doc App</h1>
                 <h2>Sign up or Log In</h2>
             </div>
