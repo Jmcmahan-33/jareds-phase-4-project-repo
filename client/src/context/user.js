@@ -53,6 +53,7 @@ function UserProvider({ children }) {
     const login = (user) => {
         // set user to context
         setUser(user)
+        fetchDoctors()
         setLoggedIn(true)
 
     }
@@ -60,12 +61,14 @@ function UserProvider({ children }) {
     const logout = () => {
         // if logged out, get rid of the user
         setUser({})
+        setDoctors([])
         // if user is not logged in 
         setLoggedIn(false)
 
     }
     const signup = (user) => {
         setUser(user)
+        fetchDoctors()
         setLoggedIn(true)
 
     }

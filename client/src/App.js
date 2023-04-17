@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <UserProvider>
-        {/* may put navbar back */}
+        <NavBar />
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
@@ -21,7 +21,7 @@ function App() {
           <Route path="/doctors" element={<Doctors />} />
           <Route path='/doctor-form' element={<DoctorForm />} />
         </Routes>
-        <NavBar />
+
       </UserProvider>
     </div>
   );
