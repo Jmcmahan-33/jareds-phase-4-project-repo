@@ -16,9 +16,7 @@ class UsersController < ApplicationController
         session[:user_id] = user.id 
         # return json 
         render json: user, status: :created
-
     end
-
     def show
         # get current user 
         user = User.find_by(id:session[:user_id])
