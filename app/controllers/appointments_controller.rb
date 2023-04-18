@@ -15,14 +15,14 @@ class AppointmentsController < ApplicationController
         end
     end
 
-    def show
-        appointment = current_user.appointments.find_by(id: params[:id])
-        if appointment 
-            render json: appointment
-        else
-            render json: {errors: "Not Found"}, status: :unauthorized
-        end
-    end 
+    # def show
+    #     appointment = current_user.appointments.find_by(id: params[:id])
+    #     if appointment 
+    #         render json: appointment
+    #     else
+    #         render json: {errors: "Not Found"}, status: :unauthorized
+    #     end
+    # end 
 
     def update 
     end 

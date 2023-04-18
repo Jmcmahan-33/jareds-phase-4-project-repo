@@ -16,14 +16,14 @@ class DoctorsController < ApplicationController
         end
     end
 
-    def show
-        doctor = current_user.doctors.find_by(id: params[:id])
-        if doctor 
-            render json: doctor
-        else
-            render json: {errors: "Not Found"}, status: :unauthorized
-        end
-    end 
+    # def show
+    #     doctor = current_user.doctors.find_by(id: params[:id])
+    #     if doctor 
+    #         render json: doctor
+    #     else
+    #         render json: {errors: "Not Found"}, status: :unauthorized
+    #     end
+    # end 
 
     private
 
