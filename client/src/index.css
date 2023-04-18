@@ -26,3 +26,8 @@ body {
   text-align: left;
   font-family: sans-serif;
 }
+.doctor-cards {
+  list-style-type: none;
+  text-align: center;
+  padding: 5px;
+}

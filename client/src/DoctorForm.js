@@ -16,7 +16,7 @@ function DoctorForm() {
 
     return (
         <div>
-            <h1>Hello from Doctor Form</h1>
+            <h1>Add Doctor</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     placeholder="name"

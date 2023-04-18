@@ -1,13 +1,17 @@
+// import Paper from '@mui/material/Paper';
+// import Grid from "@mui/material/Grid";
+
 import { useState, useContext } from "react"
-// import { useParams } from "react-router-dom"
 import { UserContext } from "./context/user"
 import DoctorForm from "./DoctorForm"
+import DoctorCard from './DoctorCard';
+import { Container } from "@mui/system";
+import Grid from "@mui/material/Grid";
 
 
 function Doctors() {
     const { doctors, loggedIn } = useContext(UserContext)
     const [formFlag, setFormFlag] = useState(false)
-    // const params = useParams()
 
     const addDoctorFlag = () => {
         setFormFlag(false)
@@ -15,20 +19,35 @@ function Doctors() {
 
     if (loggedIn) {
         const doctorList = doctors.map(doctor =>
-            <li>{doctor.name}</li>
+            // <ul className="doctor-cards">
+            //     <li>{doctor.name} </li>
+            //     <li>{doctor.speciality}</li>
+            // </ul>
+            <DoctorCard
+                key={doctor.id}
+                doctor={doctor}
+            />
         )
         return (
             <div>
                 <h1>Doctors:</h1>
                 <br />
-                {doctorList}
-                <br />
-                {formFlag ?
-                    <DoctorForm addDoctorFlag={addDoctorFlag} />
-                    :
-                    <button onClick={() => setFormFlag(true)}>Add Doctor</button>
-                }
+                <div className="doctor-container">
+                    <Container>
+                        <Grid container spacing={5}>
+                            {doctorList}
+                        </Grid>
+                    </Container>
+                    {formFlag ?
+                        <DoctorForm addDoctorFlag={addDoctorFlag} />
+                        :
+                        <button onClick={() => setFormFlag(true)}>Add Doctor</button>
+                    }
+
+                </div>
+
             </div>
+
         )
     } else {
         return (
