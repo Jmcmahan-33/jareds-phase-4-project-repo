@@ -8,6 +8,7 @@ import Signup from './Signup'
 import Login from './Login'
 import Doctors from './Doctors';
 import DoctorForm from './DoctorForm';
+import Appointments from './Appointments';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/doctors" element={<Doctors />} />
+          <Route path="/appointments" element={<Appointments/>} />
           <Route path='/doctor-form' element={<DoctorForm />} />
         </Routes>
 

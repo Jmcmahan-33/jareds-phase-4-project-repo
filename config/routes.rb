@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :doctors
   # get "/signup", to: "users#create"
   post "/signup", to: "users#create"
+  post "/appointment-form", to: "appointments#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   post "/doctor-form", to: "doctors#create"
