@@ -60,7 +60,9 @@ function UserProvider({ children }) {
     }
 
     const addAppointment = (newAppointment) => {
-        fetch('appointments', {
+        console.log("new", newAppointment )
+
+        fetch('/appointments', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newAppointment)

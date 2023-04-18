@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-    skip_before_action :authorize
+    skip_before_action :authorize, only: :create 
 
     def index 
         appointments = current_user.appointments
@@ -39,7 +39,7 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-        params.permit(:date_field, :reason_for_visit)
+        params.permit(:date_field, :reason_for_visit, doctor_id)
     end
 
     # def authorize

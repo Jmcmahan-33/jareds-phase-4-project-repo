@@ -12,7 +12,8 @@ function AppointmentCard({ appointment }) {
             <Paper elevation={3}>
                 < ul className="appointment-cards" >
                     <h3>Appointment</h3>
-                    <li>Doctor: {appointment.doctor.name}</li>
+                    {/* use serializer to be able to display doctor name  */}
+                    {/* <li>Doctor: {appointment.doctor.name}</li> */}
                     <li>{appointment.reason_for_visit} </li>
                     {/* <li>Speciality: {appointment.speciality}</li> */}
                 </ul >
