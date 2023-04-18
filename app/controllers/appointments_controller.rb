@@ -2,6 +2,8 @@ class AppointmentsController < ApplicationController
     skip_before_action :authorize
 
     def index 
+        appointments = current_user.appointments
+        render json: appointments
     end
 
     def create
@@ -12,6 +14,15 @@ class AppointmentsController < ApplicationController
             render json: {errors: appointments.errors.full_messages}, status: :unprocessable_entity
         end
     end
+
+    def show
+        appointment = current_user.appointments.find_by(id: params[:id])
+        if appointment 
+            render json: appointment
+        else
+            render json: {errors: "Not Found"}, status: :unauthorized
+        end
+    end 
 
     def update 
     end 

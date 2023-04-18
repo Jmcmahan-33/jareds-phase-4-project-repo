@@ -9,6 +9,7 @@ function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
+    const [appointments, setAppointments] = useState([])
 
     useEffect(() => {
         fetch('/me')
@@ -22,6 +23,7 @@ function UserProvider({ children }) {
                     // if there is a user 
                     setLoggedIn(true)
                     fetchDoctors()
+                    fetchAppointments()
                 }
                 // data.errors ? setLoggedIn(false) : setLoggedIn(true)
             })
@@ -31,7 +33,7 @@ function UserProvider({ children }) {
         fetch('/doctors')
             .then(res => res.json())
             .then(data => {
-                console.log("Doctors!",data)
+                // console.log("Doctors!",data)
                 setDoctors(data)
             })
     }
@@ -48,12 +50,35 @@ function UserProvider({ children }) {
         })
     }
 
-    console.log("Logged In", loggedIn)
+    const fetchAppointments = () => {
+        fetch('/appointments')
+            .then(res => res.json())
+            .then(data => {
+                console.log("Appointments!",data)
+                setAppointments(data)
+            })
+    }
+
+    const addAppointment = (newAppointment) => {
+        fetch('appointments', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(newAppointment)
+        })
+        .then(res => res.json())
+        .then(data => {
+            setAppointments([...appointments, data])
+        })
+    }
+  
+
+    // console.log("Logged In", loggedIn)
 
     const login = (user) => {
         // set user to context
         setUser(user)
         fetchDoctors()
+        fetchAppointments()
         setLoggedIn(true)
 
     }
@@ -62,6 +87,7 @@ function UserProvider({ children }) {
         // if logged out, get rid of the user
         setUser({})
         setDoctors([])
+        setAppointments([])
         // if user is not logged in 
         setLoggedIn(false)
 
@@ -69,6 +95,7 @@ function UserProvider({ children }) {
     const signup = (user) => {
         setUser(user)
         fetchDoctors()
+        fetchAppointments()
         setLoggedIn(true)
 
     }
@@ -76,7 +103,7 @@ function UserProvider({ children }) {
 
 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor}}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, appointments, addAppointment}}>
             {children}
         </UserContext.Provider>
     )

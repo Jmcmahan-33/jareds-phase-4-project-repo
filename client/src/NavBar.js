@@ -32,6 +32,9 @@ function NavBar() {
                 <NavLink to='/doctors'>
                     <Button variant="text">Doctors</Button>
                 </NavLink>
+                <NavLink to='/appointments'>
+                    <Button variant="text">Appointments</Button>
+                </NavLink>
             </div>
 
         )

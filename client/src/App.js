@@ -9,6 +9,7 @@ import Login from './Login'
 import Doctors from './Doctors';
 import DoctorForm from './DoctorForm';
 import Appointments from './Appointments';
+import AppointmentForm from './AppointmentForm';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/appointments" element={<Appointments/>} />
           <Route path='/doctor-form' element={<DoctorForm />} />
+          <Route path='/appointment-form' element={<AppointmentForm />} />
         </Routes>
 
       </UserProvider>
