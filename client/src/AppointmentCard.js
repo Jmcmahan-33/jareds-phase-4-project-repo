@@ -11,7 +11,8 @@ function AppointmentCard({ appointment }) {
         <Grid item xs={3}>
             <Paper elevation={3}>
                 < ul className="appointment-cards" >
-                    <h3>My Appointment</h3>
+                    <h3>Appointment</h3>
+                    <li>Doctor: {appointment.doctor.name}</li>
                     <li>{appointment.reason_for_visit} </li>
                     {/* <li>Speciality: {appointment.speciality}</li> */}
                 </ul >

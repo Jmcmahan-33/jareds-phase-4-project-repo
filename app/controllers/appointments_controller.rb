@@ -42,8 +42,8 @@ class AppointmentsController < ApplicationController
         params.permit(:date_field, :reason_for_visit)
     end
 
-    def authorize
-        return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
-    end 
+    # def authorize
+    #     return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
+    # end 
 
 end
