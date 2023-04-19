@@ -3,15 +3,23 @@ import { UserContext } from "./context/user"
 
 function AppointmentForm() {
     const [reason, setReason] = useState("")
-    const { addAppointment } = useContext(UserContext)
+    const [selectedDoctor, setSelectedDoctor] = useState("")
+    const { addAppointment, doctors } = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         addAppointment({
-            reason_for_visit: reason
+            reason_for_visit: reason,
+            doctor_id: selectedDoctor
 
         })
     }
+
+
+
+    const optionsList = doctors.map(doctor =>
+        <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
+    )
 
     return (
         <div>
@@ -24,6 +32,16 @@ function AppointmentForm() {
                     value={reason}
                     onChange={(e) => setReason(e.target.value)}
                 />
+                <br />
+                <select
+                    name="doctor_id"
+                    value={doctors.doctor_id}
+                    onChange={(e) => setSelectedDoctor(e.target.value)}
+
+                >
+                    {optionsList}
+                </select>
+                <br/>
 
                 <button type="submit">Schedule</button>
             </form>

@@ -33,13 +33,13 @@ function UserProvider({ children }) {
         fetch('/doctors')
             .then(res => res.json())
             .then(data => {
-                // console.log("Doctors!",data)
+                console.log("Doctors!",data)
                 setDoctors(data)
             })
     }
 
     const addDoctor = (newDoctor) => {
-        fetch('doctors', {
+        fetch('/doctors', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newDoctor)
@@ -49,7 +49,7 @@ function UserProvider({ children }) {
             setDoctors([...doctors, data])
         })
     }
-
+        // TRY TO REFACTOR BY NOT USING APPOINTMENTS FETCH ON LINE BELOW. 
     const fetchAppointments = () => {
         fetch('/appointments')
             .then(res => res.json())
