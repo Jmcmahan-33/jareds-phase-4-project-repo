@@ -10,7 +10,7 @@ function UserProvider({ children }) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
     const [appointments, setAppointments] = useState([])
-
+    
     useEffect(() => {
         fetch('/me')
             .then(res => res.json())
@@ -19,6 +19,7 @@ function UserProvider({ children }) {
                 if(data.errors) {
                     // if there is not a user
                     setLoggedIn(false)
+                    
                 } else {
                     // if there is a user 
                     setLoggedIn(true)

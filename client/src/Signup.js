@@ -80,7 +80,7 @@ function Signup() {
                         <TextField
                             fullWidth required
                             label="confirm password"
-                            type="confirmpassword"
+                            type="password"
                             id="confirmpassword"
                             value={passwordConfirmation}
                             onChange={(e) => setPasswordConfirmation(e.target.value)}
