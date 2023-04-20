@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 // create context 
 const UserContext = React.createContext();
+
+
 
 // before refactor of login and signup 
 
 function UserProvider({ children }) {
+    const navigate = useNavigate()
     // set state to empty object to get it. 
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
@@ -87,6 +92,7 @@ function UserProvider({ children }) {
         setAppointments([])
         // if user is not logged in 
         setLoggedIn(false)
+        // navigate('/')
 
     }
     const signup = (user) => {

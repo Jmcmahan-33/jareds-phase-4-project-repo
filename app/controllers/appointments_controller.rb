@@ -39,7 +39,7 @@ class AppointmentsController < ApplicationController
     end
 
     def appointment_params
-        params.permit(:date_field, :reason_for_visit, doctor_id)
+        params.permit(:date_field, :reason_for_visit, :doctor_id)
     end
 
     # def authorize
