@@ -74,7 +74,7 @@ function UserProvider({ children }) {
     }
   
 
-    // console.log("Logged In", loggedIn)
+    console.log("Logged In", loggedIn)
 
     const login = (user) => {
         // set user to context
@@ -87,9 +87,9 @@ function UserProvider({ children }) {
 
     const logout = () => {
         // if logged out, get rid of the user
-        setUser({})
-        setDoctors([])
-        setAppointments([])
+        // setUser({})
+        // setDoctors([])
+        // setAppointments([])
         // if user is not logged in 
         setLoggedIn(false)
         // navigate('/')
