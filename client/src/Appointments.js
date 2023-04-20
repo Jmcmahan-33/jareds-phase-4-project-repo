@@ -8,15 +8,20 @@ import AppointmentForm from "./AppointmentForm";
 
 
 function Appointments() {
-    const { appointments, loggedIn } = useContext(UserContext)
+    const { user, loggedIn } = useContext(UserContext)
     const [formFlag, setFormFlag] = useState(false)
-
+    // const [appointmentList, setAppointmentList] = useState([])
+ 
     const addAppointmentFlag = () => {
         setFormFlag(false)
     }
 
+    // try to set state for appointments in appointments so that the state is an empty array. 
+
+  
+
     if (loggedIn) {
-        const appointmentList = appointments.map(appointment =>
+        const userAppointmentList = user.appointments.map(appointment =>
             // <ul className="appointment-cards">
             //     <li>{appointment.name} </li>
             //     <li>{appointment.speciality}</li>
@@ -33,7 +38,7 @@ function Appointments() {
                 <div className="appointment-container">
                     <Container>
                         <Grid container spacing={5}>
-                            {appointmentList}
+                            {userAppointmentList}
                         </Grid>
                     </Container>
                     {formFlag ?

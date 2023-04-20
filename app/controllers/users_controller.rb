@@ -21,7 +21,7 @@ class UsersController < ApplicationController
         # get current user 
         user = User.find_by(id:session[:user_id])
         # render json 
-        render json: user
+        render json: user, serializer: UserWithAppointmentsSerializer
         # render json: @current_user
     end 
 

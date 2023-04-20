@@ -18,6 +18,7 @@ function UserProvider({ children }) {
             .then(res => res.json())
             .then(data => {
                 setUser(data)
+                // setAppointments(data.appointments)
                 if(data.errors) {
                     // if there is not a user
                     setLoggedIn(false)

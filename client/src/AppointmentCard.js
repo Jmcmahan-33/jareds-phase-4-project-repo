@@ -4,7 +4,9 @@ import { Paper } from "@mui/material"
 // import { UserContext } from "./context/user"
 
 function AppointmentCard({ appointment }) {
-    console.log("STATE TEST", appointment )
+    // const { user, doctor} = useContext(UserContext)
+
+    console.log("Appointment Card", appointment)
 
 
     return (
@@ -14,6 +16,8 @@ function AppointmentCard({ appointment }) {
                     <h3>Appointment</h3>
                     {/* use serializer to be able to display doctor name  */}
                     {/* <li>Doctor: {appointment.doctor.name}</li> */}
+                    <li> Appointment with:{appointment.doctor.name}</li>
+
                     <li>{appointment.reason_for_visit} </li>
                     {/* <li>Speciality: {appointment.speciality}</li> */}
                 </ul >
