@@ -4,4 +4,5 @@ class UserSerializer < ActiveModel::Serializer
    # refactor start try, may remove lines below
   has_many :appointments
   has_many :doctors, through: :appointments
+
 end
