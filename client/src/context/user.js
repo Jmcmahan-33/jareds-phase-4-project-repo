@@ -53,19 +53,10 @@ function UserProvider({ children }) {
             setDoctors([...doctors, data])
         })
     }
-        // TRY TO REFACTOR BY NOT USING APPOINTMENTS FETCH ON LINE BELOW. 
-    // const fetchAppointments = () => {
-    //     fetch('/appointments')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log("Appointments!",data)
-    //             setAppointments(data)
-    //         })
-    // }
+     
 
     const addAppointment = (newAppointment) => {
         console.log("new", newAppointment )
-
         fetch('/appointments', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -109,7 +100,7 @@ function UserProvider({ children }) {
 
 // remember to take out appointments in the return if appointments fetch is not used. 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, appointments, addAppointment}}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment}}>
             {children}
         </UserContext.Provider>
     )
