@@ -10,7 +10,9 @@ function UserProvider({ children }) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
     const [appointments, setAppointments] = useState([])
-    
+
+
+    console.log("User with nested data", user)
     useEffect(() => {
         fetch('/me')
             .then(res => res.json())
@@ -24,7 +26,7 @@ function UserProvider({ children }) {
                     // if there is a user 
                     setLoggedIn(true)
                     fetchDoctors()
-                    fetchAppointments()
+                    // fetchAppointments()
                 }
                 // data.errors ? setLoggedIn(false) : setLoggedIn(true)
             })
@@ -51,14 +53,14 @@ function UserProvider({ children }) {
         })
     }
         // TRY TO REFACTOR BY NOT USING APPOINTMENTS FETCH ON LINE BELOW. 
-    const fetchAppointments = () => {
-        fetch('/appointments')
-            .then(res => res.json())
-            .then(data => {
-                console.log("Appointments!",data)
-                setAppointments(data)
-            })
-    }
+    // const fetchAppointments = () => {
+    //     fetch('/appointments')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log("Appointments!",data)
+    //             setAppointments(data)
+    //         })
+    // }
 
     const addAppointment = (newAppointment) => {
         console.log("new", newAppointment )
@@ -81,7 +83,7 @@ function UserProvider({ children }) {
         // set user to context
         setUser(user)
         fetchDoctors()
-        fetchAppointments()
+        // fetchAppointments()
         setLoggedIn(true)
 
     }
@@ -98,13 +100,13 @@ function UserProvider({ children }) {
     const signup = (user) => {
         setUser(user)
         fetchDoctors()
-        fetchAppointments()
+        // fetchAppointments()
         setLoggedIn(true)
 
     }
 
 
-
+// remember to take out appointments in the return if appointments fetch is not used. 
     return (
         <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, appointments, addAppointment}}>
             {children}

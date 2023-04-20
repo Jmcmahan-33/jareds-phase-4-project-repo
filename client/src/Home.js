@@ -13,6 +13,7 @@ function Home() {
         return (
             <div className="text-style">
                 <h1>{user.username} Homepage</h1>
+                <h2>List of same doctors for every user</h2>
             </div>
         )
     } else {
