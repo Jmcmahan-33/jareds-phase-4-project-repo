@@ -11,7 +11,9 @@ const UserContext = React.createContext();
 function UserProvider({ children }) {
     const navigate = useNavigate()
     // set state to empty object to get it. 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState({
+        appointments: []
+    })
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
     const [appointments, setAppointments] = useState([])
@@ -87,12 +89,14 @@ function UserProvider({ children }) {
 
     const logout = () => {
         // if logged out, get rid of the user
-        // setUser({})
-        // setDoctors([])
+        setUser({
+            appointments: []
+        })
+        setDoctors([])
         // setAppointments([])
         // if user is not logged in 
         setLoggedIn(false)
-        // navigate('/')
+        // navigate('/login')
 
     }
     const signup = (user) => {
