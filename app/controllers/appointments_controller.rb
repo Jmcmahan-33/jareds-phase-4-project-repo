@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-    skip_before_action :authorize
+    skip_before_action :authorize , only: [:index, :show, :create]
 
     def index 
         appointments = @current_user.appointments
@@ -14,7 +14,7 @@ class AppointmentsController < ApplicationController
     # q: why does show not work in the browser?
 
     def show
-        render json: @appointment
+        render json: appointment
     end
 
  
@@ -30,8 +30,8 @@ class AppointmentsController < ApplicationController
     # end 
 
     def update
-            @appointment.update(appointment_params)
-            render json: @appointment
+            appointment.update(appointment_params)
+            render json: appointment
     end
 
     def destroy
@@ -46,16 +46,16 @@ class AppointmentsController < ApplicationController
         User.find_by(id: session[:user_id])
     end
     def find_appointment
-      @appointment = @current_user.appointments.find_by(id: params[:id])
-      render json: { error: "Appointment not found" }, status: :not_found unless @appointment
+      appointment = @current_user.appointments.find_by(id: params[:id])
+      render json: { error: "Appointment not found" }, status: :not_found unless appointment
     end
 
     def appointment_params
         params.permit(:date_field, :reason_for_visit, :doctor_id)
     end
 
-    def authorize
-        return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
-    end 
+    # def authorize
+    #     return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
+    # end 
 
 end
