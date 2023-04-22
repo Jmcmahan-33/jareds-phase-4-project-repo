@@ -7,13 +7,13 @@ class AppointmentsController < ApplicationController
     end
 
     def create
-        appointment = current_user.appointments.create(appointment_params)
-        if appointment.valid? 
-            render json: appointment 
-        else
-            render json: {errors: appointments.errors.full_messages}, status: :unprocessable_entity
-        end
+        appointment = current_user.appointments.create!(appointment_params)
+        render json: appointment 
+       
     end
+
+ 
+
 
     # def show
     #     appointment = current_user.appointments.find_by(id: params[:id])
@@ -42,8 +42,8 @@ class AppointmentsController < ApplicationController
         params.permit(:date_field, :reason_for_visit, :doctor_id)
     end
 
-    # def authorize
-    #     return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
-    # end 
+    def authorize
+        return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
+    end 
 
 end

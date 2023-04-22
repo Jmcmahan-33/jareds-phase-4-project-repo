@@ -3,22 +3,30 @@ import { UserContext } from "./context/user"
 
 function AppointmentForm() {
     const [reason, setReason] = useState("")
+    const [date, setDate] = useState("")
     const [selectedDoctor, setSelectedDoctor] = useState("")
-    const { addAppointment, doctors } = useContext(UserContext)
+    const {  addAppointment, doctors } = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         addAppointment({
             reason_for_visit: reason,
-            doctor_id: selectedDoctor
+            doctor_id: selectedDoctor,
+            date_field: date
 
         })
+        console.log("Selected", selectedDoctor)
     }
 
+    console.log("Outside of function", selectedDoctor)
 
+   
+
+    
 
     const optionsList = doctors.map(doctor =>
         <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
+        
     )
 
     return (
@@ -33,9 +41,17 @@ function AppointmentForm() {
                     onChange={(e) => setReason(e.target.value)}
                 />
                 <br />
+                <input
+                    placeholder="date"
+                    type="date"
+                    id="date_field"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                />
+                <br />
                 <select
                     name="doctor_id"
-                    value={doctors.doctor_id}
+                    value={selectedDoctor.doctor_id}
                     onChange={(e) => setSelectedDoctor(e.target.value)}
 
                 >

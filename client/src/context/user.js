@@ -5,18 +5,20 @@ import { useNavigate } from "react-router-dom";
 const UserContext = React.createContext();
 
 
-
-// before refactor of login and signup 
-
 function UserProvider({ children }) {
     const navigate = useNavigate()
-    // set state to empty object to get it. 
+  
     const [user, setUser] = useState({
         appointments: []
     })
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
-    const [appointments, setAppointments] = useState([])
+    const [errors, setErrors] = useState([])
+
+
+    // q: why are my doctor ids duplicating in the options list?
+
+    // q: how to make optionsList not du
 
 
     console.log("User with nested data", user)
@@ -60,21 +62,43 @@ function UserProvider({ children }) {
             setDoctors([...doctors, data])
         })
     }
-     
+
+  
+
+    // const addAppointment = (newAppointment) => {
+    //     console.log("new", newAppointment )
+    //     fetch('/appointments', {
+    //         method: 'POST',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(newAppointment)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         // console.log("Scheduled", data)
+    //     })
+    // }
 
     const addAppointment = (newAppointment) => {
-        console.log("new", newAppointment )
         fetch('/appointments', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newAppointment)
         })
-        .then(res => res.json())
+        .then(resp => resp.json())
         .then(data => {
-            setAppointments([...appointments, data])
-        })
-    }
+            if (!data.errors) {
+                // handleAddedPunchcard(data)
+                // setFormFlag(false)
+                // navigate('/appointments')
+                setErrors([])
+            } else {
+                const errorLis = data.errors.map( e => <li>{e}</li>)
+                setErrors(errorLis)
+            }  
+          }) 
+        }
   
+
 
     console.log("Logged In", loggedIn)
 
@@ -87,6 +111,8 @@ function UserProvider({ children }) {
 
     }
 
+   
+
     const logout = () => {
         // if logged out, get rid of the user
         setUser({
@@ -96,7 +122,7 @@ function UserProvider({ children }) {
         // setAppointments([])
         // if user is not logged in 
         setLoggedIn(false)
-        // navigate('/login')
+        navigate('/')
 
     }
     const signup = (user) => {
@@ -110,7 +136,7 @@ function UserProvider({ children }) {
 
 // remember to take out appointments in the return if appointments fetch is not used. 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment}}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, errors}}>
             {children}
         </UserContext.Provider>
     )

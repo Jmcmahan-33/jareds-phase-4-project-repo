@@ -6,8 +6,7 @@ import { Paper } from "@mui/material"
 function AppointmentCard({ appointment }) {
     // const { user, doctor} = useContext(UserContext)
 
-    console.log("Appointment Card", appointment)
-
+   
 
     return (
         <Grid item xs={3}>
@@ -19,6 +18,7 @@ function AppointmentCard({ appointment }) {
                     <li> Appointment with:{appointment.doctor.name}</li>
 
                     <li>{appointment.reason_for_visit} </li>
+                    <li>{appointment.date_field} </li>
                     {/* <li>Speciality: {appointment.speciality}</li> */}
                 </ul >
             </Paper>

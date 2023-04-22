@@ -9,8 +9,6 @@ function DoctorForm() {
     const [notes, setNotes] = useState("")
     const { addDoctor } = useContext(UserContext)
 
-//    q:make setRoom, setRate, setNotes work
-// a:
 
 
 
