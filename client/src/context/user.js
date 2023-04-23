@@ -12,6 +12,7 @@ function UserProvider({ children }) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
     const [errors, setErrors] = useState([])
+    const [appointments, setAppointments] = useState([])
 
 
     console.log("User with nested data", user)
@@ -41,7 +42,7 @@ function UserProvider({ children }) {
                 setDoctors(data)
             })
     }
-
+    // fix add doctor
     const addDoctor = (newDoctor) => {
         fetch('/doctors', {
             method: 'POST',
@@ -53,14 +54,24 @@ function UserProvider({ children }) {
             setDoctors([...doctors, data])
         })
     }
-
-    const deleteAppointment = (id) => {
-        fetch(`/appointments/${id}`, {
-            method: "DELETE",
+    // continue fixing delete appointment
+    // q: write a function that deletes an appointment
+    // a:
+    const deleteAppointment = (appointmentId) => {
+        fetch(`/appointments/${appointmentId}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
         })
-            .then(() => console.log("IDDD",id))
-            .catch(error => console.log(error))
+        .then(res => res.json())
+        .then(data => {
+            console.log("Deleted Appointment", data)
+        })
     }
+
+  
+
+   
+
 
 
     const addAppointment = (newAppointment) => {
