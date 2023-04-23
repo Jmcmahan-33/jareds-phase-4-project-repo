@@ -8,17 +8,14 @@ const UserContext = React.createContext();
 function UserProvider({ children }) {
     const navigate = useNavigate()
   
-    const [user, setUser] = useState({
-        appointments: []
-    })
+    const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
     const [errors, setErrors] = useState([])
 
+    // q: when I refresh the page, the user is not logged in.
 
-    // q: why are my doctor ids duplicating in the options list?
 
-    // q: how to make optionsList not du
 
 
     console.log("User with nested data", user)
@@ -27,7 +24,6 @@ function UserProvider({ children }) {
             .then(res => res.json())
             .then(data => {
                 setUser(data)
-                // setAppointments(data.appointments)
                 if(data.errors) {
                     // if there is not a user
                     setLoggedIn(false)
@@ -36,7 +32,6 @@ function UserProvider({ children }) {
                     // if there is a user 
                     setLoggedIn(true)
                     fetchDoctors()
-                    // fetchAppointments()
                 }
                 // data.errors ? setLoggedIn(false) : setLoggedIn(true)
             })
@@ -115,9 +110,7 @@ function UserProvider({ children }) {
 
     const logout = () => {
         // if logged out, get rid of the user
-        setUser({
-            appointments: []
-        })
+        setUser({})
         setDoctors([])
         // setAppointments([])
         // if user is not logged in 

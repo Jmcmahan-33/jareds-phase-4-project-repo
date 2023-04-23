@@ -16,6 +16,8 @@ import Button from '@mui/material/Button'
 
 
 function Signup() {
+    const [fullName, setFullName] = useState("")
+    const [age, setAge] = useState("")
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
@@ -29,6 +31,8 @@ function Signup() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
+                full_name: fullName,
+                age: age,
                 username: username,
                 password: password,
                 password_confirmation: passwordConfirmation
@@ -48,7 +52,7 @@ function Signup() {
                 }
             })
     }
-    const paddingStyle = { padding: 20, height: "40vh", width: 260, margin: "20px auto" }
+    const paddingStyle = { padding: 55, height: "50vh", width: 260, margin: "20px auto" }
 
 
     return (
@@ -57,6 +61,26 @@ function Signup() {
                 <Paper elevation={10} style={paddingStyle}>
                     <form onSubmit={handleSubmit}>
                         <h2>Create Account</h2>
+                        <TextField
+                            fullWidth required
+                            label="Full Name"
+                            type="text"
+                            id="full_name"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                        />
+                        <br />
+                        <br />
+                        <TextField
+                            fullWidth required
+                            label="Age"
+                            type="text"
+                            id="age"
+                            value={age}
+                            onChange={(e) => setAge(e.target.value)}
+                        />
+                        <br />
+                        <br />
                         <TextField
                             fullWidth required
                             label="Username"
