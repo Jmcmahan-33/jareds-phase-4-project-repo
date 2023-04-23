@@ -1,11 +1,20 @@
-import { Grid } from "@mui/material"
+import { Button, Grid } from "@mui/material"
 import { Paper } from "@mui/material"
+import { useContext } from "react"
+import { UserContext } from "./context/user"
+
 // import { useState, useContext } from "react"
 // import { UserContext } from "./context/user"
 
 function AppointmentCard({ appointment }) {
-    // const { user, doctor} = useContext(UserContext)
+    const {  deleteAppointment } = useContext(UserContext)
 
+  
+    function handleDelete() {
+       console.log(appointment.id)
+    }
+
+    
    
 
     return (
@@ -21,6 +30,7 @@ function AppointmentCard({ appointment }) {
                     <li>{appointment.date_field} </li>
                     {/* <li>Speciality: {appointment.speciality}</li> */}
                 </ul >
+                <Button onClick={handleDelete}>Cancel</Button>
             </Paper>
         </Grid>
 

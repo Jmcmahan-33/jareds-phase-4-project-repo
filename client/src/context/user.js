@@ -13,10 +13,6 @@ function UserProvider({ children }) {
     const [doctors, setDoctors] = useState([])
     const [errors, setErrors] = useState([])
 
-    // q: when I refresh the page, the user is not logged in.
-
-
-
 
     console.log("User with nested data", user)
     useEffect(() => {
@@ -58,20 +54,14 @@ function UserProvider({ children }) {
         })
     }
 
-  
+    const deleteAppointment = (id) => {
+        fetch(`/appointments/${id}`, {
+            method: "DELETE",
+        })
+            .then(() => console.log("IDDD",id))
+            .catch(error => console.log(error))
+    }
 
-    // const addAppointment = (newAppointment) => {
-    //     console.log("new", newAppointment )
-    //     fetch('/appointments', {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify(newAppointment)
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         // console.log("Scheduled", data)
-    //     })
-    // }
 
     const addAppointment = (newAppointment) => {
         fetch('/appointments', {
@@ -129,7 +119,7 @@ function UserProvider({ children }) {
 
 // remember to take out appointments in the return if appointments fetch is not used. 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, errors}}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, errors, deleteAppointment}}>
             {children}
         </UserContext.Provider>
     )
