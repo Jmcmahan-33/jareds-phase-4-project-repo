@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-    skip_before_action :authorize , only: [:index, :show, :create]
+    skip_before_action :authorize , only: [:index, :show, :create, :update, :destroy]
 
     def index 
         appointments = @current_user.appointments
@@ -34,10 +34,18 @@ class AppointmentsController < ApplicationController
             render json: appointment
     end
 
+ 
+
     def destroy
-        @appointment.delete
-        head :no_content
+        user = current_user
+        if user
+            appointment = Appointment.find_by_id(params[:id]) #?unxepeted Unexpected end of JSON input
+            appointment.destroy
+            head :no_content
+        end
     end
+    # q: why is the delete method undifined?
+    # a: because you are not using the find_appointment method
     private 
 
     def current_user
@@ -45,6 +53,7 @@ class AppointmentsController < ApplicationController
         # find user id in the session hash
         User.find_by(id: session[:user_id])
     end
+
     def find_appointment
       appointment = @current_user.appointments.find_by(id: params[:id])
       render json: { error: "Appointment not found" }, status: :not_found unless appointment
