@@ -7,7 +7,7 @@ import Home from './Home';
 import Signup from './Signup'
 import Login from './Login'
 import Doctors from './Doctors';
-import DoctorForm from './DoctorForm';
+// import DoctorForm from './DoctorForm';
 import Appointments from './Appointments';
 import AppointmentForm from './AppointmentForm';
 

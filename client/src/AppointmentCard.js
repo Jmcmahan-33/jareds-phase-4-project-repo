@@ -10,11 +10,11 @@ function AppointmentCard({ appointment }) {
     const {  deleteAppointment } = useContext(UserContext)
 
   
-   
+//    app breaks but working delete
     const handleDelete = () => {
         deleteAppointment(appointment.id)
     }
-    
+
    
 
     return (
