@@ -10,10 +10,10 @@ function AppointmentCard({ appointment }) {
     const {  deleteAppointment } = useContext(UserContext)
 
   
-    function handleDelete() {
-       console.log(appointment.id)
+   
+    const handleDelete = () => {
+        deleteAppointment(appointment.id)
     }
-
     
    
 

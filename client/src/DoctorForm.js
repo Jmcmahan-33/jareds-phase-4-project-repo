@@ -10,12 +10,6 @@ function DoctorForm() {
     const { addDoctor } = useContext(UserContext)
 
 
-
-
-
-
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
         addDoctor({

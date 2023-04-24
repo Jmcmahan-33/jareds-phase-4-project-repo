@@ -26,7 +26,7 @@ function Login() {
         })
             .then(res => res.json())
             .then((user) => {
-                console.log("usertesting", user)
+                // console.log("usertesting", user)
                 if (!user.error) {
                     login(user)
                     navigate('/')
@@ -39,7 +39,7 @@ function Login() {
             })
 
     }
-    console.log("login error", error)
+    // console.log("login error", error)
 
     const paddingStyle = { padding: 20, height: "40vh", width: 260, margin: "20px auto" }
     const avatarStyle = { backgroundColor: "blue" }
