@@ -1,13 +1,13 @@
 class AppointmentsController < ApplicationController
-    skip_before_action :authorize , only: [:index, :show, :create, :update, :destroy]
+   before_action :authorize
 
     def index 
-        appointments = @current_user.appointments
+        appointments = current_user.appointments
         render json: appointments
     end
 
     def create
-        appointment = current_user.appointments.create!(appointment_params)
+        appointment = current_user.appointments.create(appointment_params)
         render json: appointment 
        
     end
@@ -16,6 +16,9 @@ class AppointmentsController < ApplicationController
     def show
         render json: appointment
     end
+
+    # q: how can I not duplicate doctors when creating an appointment?
+    # a:
 
  
 
@@ -54,10 +57,10 @@ class AppointmentsController < ApplicationController
         User.find_by(id: session[:user_id])
     end
 
-    def find_appointment
-      appointment = @current_user.appointments.find_by(id: params[:id])
-      render json: { error: "Appointment not found" }, status: :not_found unless appointment
-    end
+    # def find_appointment
+    #   appointment = @current_user.appointments.find_by(id: params[:id])
+    #   render json: { error: "Appointment not found" }, status: :not_found unless appointment
+    # end
 
     def appointment_params
         params.permit(:date_field, :reason_for_visit, :doctor_id)

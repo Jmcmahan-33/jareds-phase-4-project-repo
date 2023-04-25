@@ -1,5 +1,8 @@
 class DoctorsController < ApplicationController
-    before_action :authorize
+    before_action :authorize, only: [:create]
+# q: what does line 2 do?
+# a: it makes sure that the user is logged in before they can create a doctor.
+  
 
     def index
         # index doctors for only the current user. 
@@ -11,23 +14,19 @@ class DoctorsController < ApplicationController
     
     def create 
         doctor = current_user.doctors.create(doctor_params)
-        if doctor.valid?
-            render json: doctor, status: :created
-        else
-            render json: {errors: doctor.errors.full_messages}, status: :unprocessable_entity
-        end
+        render json: doctor, status: :created
     end
 
      
 
-    def show
-        doctor = current_user.doctors.find_by(id: params[:id])
-        if doctor 
-            render json: doctor
-        else
-            render json: {errors: "Not Found"}, status: :unauthorized
-        end
-    end 
+    # def show
+    #     doctor = current_user.doctors.find_by(id: params[:id])
+    #     if doctor 
+    #         render json: doctor
+    #     else
+    #         render json: {errors: "Not Found"}, status: :unauthorized
+    #     end
+    # end 
 
     private
 

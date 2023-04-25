@@ -11,9 +11,9 @@ function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
-    const [errors, setErrors] = useState([])
+    // const [errors, setErrors] = useState([])
     // should I be using appointment state
-    const [appointment, setAppointment] = useState([])
+    const [appointments, setAppointments] = useState([])
 
 
     // console.log("User with nested data", user)
@@ -66,7 +66,7 @@ function UserProvider({ children }) {
         })
         .then(res => res.json())
         .then(data => {
-            setAppointment(data)
+            setAppointments(data)
         })
     }
 
@@ -74,21 +74,14 @@ function UserProvider({ children }) {
     const addAppointment = (newAppointment) => {
         fetch('/appointments', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newAppointment)
         })
-        .then(resp => resp.json())
-        .then(data => {
-            if (!data.errors) {
-                // setFormFlag(false)
-                // navigate('/appointments')
-                setErrors([])
-            } else {
-                const errorLis = data.errors.map( e => <li>{e}</li>)
-                setErrors(errorLis)
-            }  
-          }) 
-        }
+            .then(res => res.json())
+            .then(data => {
+                setAppointments([...appointments, data])
+            })
+    }
   
 
 
@@ -126,7 +119,7 @@ function UserProvider({ children }) {
 
 // remember to take out appointments in the return if appointments fetch is not used. 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, errors, deleteAppointment}}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, deleteAppointment}}>
             {children}
         </UserContext.Provider>
     )

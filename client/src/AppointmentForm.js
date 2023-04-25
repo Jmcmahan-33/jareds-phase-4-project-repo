@@ -1,33 +1,56 @@
 import React, { useContext, useState } from "react"
 import { UserContext } from "./context/user"
 
+// q:write a map method to display doctors in select tag with out duplicating.
+
+
+
+
 function AppointmentForm() {
     const [reason, setReason] = useState("")
     const [date, setDate] = useState("")
-    const [selectedDoctor, setSelectedDoctor] = useState("")
-    const {  addAppointment, doctors } = useContext(UserContext)
+    const [id, setId] = useState("")
+    
+    const {  addAppointment, doctors, user } = useContext(UserContext)
+   
 
     const handleSubmit = (e) => {
         e.preventDefault()
         addAppointment({
             reason_for_visit: reason,
-            doctor_id: selectedDoctor,
-            date_field: date
+            date_field: date,
+            doctor_id: id,
 
         })
-        console.log("Selected", selectedDoctor)
+        setReason("")
+        setDate("")
+        setId("")
     }
 
-    console.log("Outside of function", selectedDoctor)
 
-   
 
     
 
-    const optionsList = doctors.map(doctor =>
-        <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
-        
-    )
+    const removeDuplicates = (duplicates) => {
+        const flag = {};
+        const unique = []
+        duplicates.forEach(doctor => { 
+            if (!flag[doctor.id]) {
+                flag[doctor.id] = true;
+                unique.push(doctor);
+            }
+        });
+        return unique;
+    }
+    console.log("!!!",doctors)
+
+    const optionsList = removeDuplicates(doctors).map(doctor =>
+        <option key={doctor.id} value={doctor.id}>{doctor.name}</option>)
+
+
+    console.log("optionsList", optionsList)
+
+
 
     return (
         <div>
@@ -51,8 +74,8 @@ function AppointmentForm() {
                 <br />
                 <select
                     name="doctor_id"
-                    value={selectedDoctor.doctor_id}
-                    onChange={(e) => setSelectedDoctor(e.target.value)}
+                    value={user.doctor_id}
+                    onChange={(e) => setId(e.target.value)}
 
                 >
                     {optionsList}
