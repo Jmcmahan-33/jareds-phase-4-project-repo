@@ -13,7 +13,7 @@ function UserProvider({ children }) {
     const [doctors, setDoctors] = useState([])
     // const [errors, setErrors] = useState([])
     // should I be using appointment state
-    const [appointments, setAppointments] = useState([])
+    // const [appointments, setAppointments] = useState([])
 
 
     // console.log("User with nested data", user)
@@ -66,12 +66,15 @@ function UserProvider({ children }) {
         })
         .then(res => res.json())
         .then(data => {
-            setAppointments(data)
+            // setAppointments(data)
+            // setUser([...user, data])
+
         })
     }
-
+    
 
     const addAppointment = (newAppointment) => {
+        // const updatedUser = {...user, appointments: [...user.appointments, newAppointment]}
         fetch('/appointments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -79,7 +82,10 @@ function UserProvider({ children }) {
         })
             .then(res => res.json())
             .then(data => {
-                setAppointments([...appointments, data])
+                const updatedUser = {...user, appointments: [...user.appointments, data]} //
+                // setAppointments([...appointments, data])
+                setUser(updatedUser)
+                console.log("dataaaaa", data)
             })
     }
   
