@@ -8,6 +8,9 @@ import DoctorCard from './DoctorCard';
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
 
+// q:how do I fix the warning about encountered two children with the same key
+
+
 
 function Doctors() {
     const { doctors, loggedIn } = useContext(UserContext)
@@ -24,7 +27,8 @@ function Doctors() {
             //     <li>{doctor.speciality}</li>
             // </ul>
             <DoctorCard
-                key={doctor.id}
+                key={doctor.doctor_id} 
+                // may go back to doctor.id in line above.
                 doctor={doctor}
             />
         )

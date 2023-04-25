@@ -6,7 +6,7 @@ class DoctorsController < ApplicationController
 
     def index
         # index doctors for only the current user. 
-        doctors = current_user.doctors
+        doctors = Doctor.all
         render json: doctors
     end 
 

@@ -11,7 +11,7 @@ function UserProvider({ children }) {
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
-    // const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([])
     // should I be using appointment state
     // const [appointments, setAppointments] = useState([])
 
@@ -22,9 +22,10 @@ function UserProvider({ children }) {
             .then(res => res.json())
             .then(data => {
                 setUser(data)
-                if(data.errors) {
-                    // if there is not a user
+                if(data.errors)  {
+                    // if there is an error
                     setLoggedIn(false)
+                    setErrors(data.errors) // set errors to the errors from the backend
                     
                 } else {
                     // if there is a user 
@@ -34,6 +35,7 @@ function UserProvider({ children }) {
                 // data.errors ? setLoggedIn(false) : setLoggedIn(true)
             })
     }, [])
+    console.log("User", user)
 
     const fetchDoctors = () => {
         fetch('/doctors')
@@ -82,7 +84,7 @@ function UserProvider({ children }) {
         })
             .then(res => res.json())
             .then(data => {
-                const updatedUser = {...user, appointments: [...user.appointments, data]} //
+                const updatedUser = {...user, appointments: [...user.appointments, data]} //  user with the new appointment
                 // setAppointments([...appointments, data])
                 setUser(updatedUser)
                 console.log("dataaaaa", data)
@@ -125,7 +127,7 @@ function UserProvider({ children }) {
 
 // remember to take out appointments in the return if appointments fetch is not used. 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, deleteAppointment}}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, deleteAppointment, errors}}>
             {children}
         </UserContext.Provider>
     )
