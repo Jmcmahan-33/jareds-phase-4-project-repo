@@ -3,19 +3,17 @@ import { Paper } from "@mui/material"
 import { useContext } from "react"
 import { UserContext } from "./context/user"
 
-// import { useState, useContext } from "react"
-// import { UserContext } from "./context/user"
 
 function AppointmentCard({ appointment }) {
     const {  deleteAppointment } = useContext(UserContext)
 
   
 //    app breaks but working delete
+//  get back unexpected json
+
     const handleDelete = () => {
         deleteAppointment(appointment.id)
     }
-
-   
 
     return (
         <Grid item xs={3}>

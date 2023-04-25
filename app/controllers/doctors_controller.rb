@@ -1,5 +1,5 @@
 class DoctorsController < ApplicationController
-    skip_before_action :authorize, only: [:create]
+    before_action :authorize
 
     def index
         # index doctors for only the current user. 
@@ -8,20 +8,26 @@ class DoctorsController < ApplicationController
     end 
 
 
- 
+    
     def create 
-        doctor = Doctor.create!(doctor_params)
-        render json: doctor
-      end
+        doctor = current_user.doctors.create(doctor_params)
+        if doctor.valid?
+            render json: doctor, status: :created
+        else
+            render json: {errors: doctor.errors.full_messages}, status: :unprocessable_entity
+        end
+    end
 
-    # def show
-    #     doctor = @current_user.doctors.find_by(id: params[:id])
-    #     if doctor 
-    #         render json: doctor
-    #     else
-    #         render json: {errors: "Not Found"}, status: :unauthorized
-    #     end
-    # end 
+     
+
+    def show
+        doctor = current_user.doctors.find_by(id: params[:id])
+        if doctor 
+            render json: doctor
+        else
+            render json: {errors: "Not Found"}, status: :unauthorized
+        end
+    end 
 
     private
 

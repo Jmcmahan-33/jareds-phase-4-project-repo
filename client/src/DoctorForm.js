@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react"
 import { UserContext } from "./context/user"
 
+
+
+
 function DoctorForm() {
     const [name, setName] = useState("")
     const [speciality, setSpeciality] = useState("")
@@ -8,6 +11,7 @@ function DoctorForm() {
     const [rate, setRate] = useState("")
     const [notes, setNotes] = useState("")
     const { addDoctor } = useContext(UserContext)
+
 
 
     const handleSubmit = (e) => {

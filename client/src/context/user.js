@@ -12,6 +12,7 @@ function UserProvider({ children }) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
     const [errors, setErrors] = useState([])
+    // should I be using appointment state
     const [appointment, setAppointment] = useState([])
 
 
@@ -79,7 +80,6 @@ function UserProvider({ children }) {
         .then(resp => resp.json())
         .then(data => {
             if (!data.errors) {
-                // handleAddedPunchcard(data)
                 // setFormFlag(false)
                 // navigate('/appointments')
                 setErrors([])
