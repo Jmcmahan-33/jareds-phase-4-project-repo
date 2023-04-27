@@ -4,31 +4,26 @@ import { useContext } from "react"
 import { UserContext } from "./context/user"
 
 
+
 function AppointmentCard({ appointment }) {
     const {  deleteAppointment } = useContext(UserContext)
 
-  
-//    app breaks but working delete
-//  get back unexpected json
 
-    const handleDelete = () => {
-        deleteAppointment(appointment.id)
-    }
+
+
+ 
 
     return (
         <Grid item xs={3}>
             <Paper elevation={3}>
                 < ul className="appointment-cards" >
                     <h3>Appointment</h3>
-                    {/* use serializer to be able to display doctor name  */}
-                    {/* <li>Doctor: {appointment.doctor.name}</li> */}
                     <li> Appointment with:{appointment.doctor.name}</li>
-
                     <li>{appointment.reason_for_visit} </li>
                     <li>{appointment.date_field} </li>
-                    {/* <li>Speciality: {appointment.speciality}</li> */}
+            
                 </ul >
-                <Button onClick={handleDelete}>Cancel</Button>
+                <Button onClick={()=> deleteAppointment(appointment.id)}>Cancel</Button>
             </Paper>
         </Grid>
 

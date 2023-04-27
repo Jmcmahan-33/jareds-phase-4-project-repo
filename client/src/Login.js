@@ -27,13 +27,14 @@ function Login() {
             .then(res => res.json())
             .then((user) => {
                 // console.log("usertesting", user)
-                if (!user.error) {
+                if (!user.errors) {
+
                     login(user)
                     navigate('/')
                 } else {
                     setUserName("")
                     setPassword("")
-                    const errorLi = <li>{user.error}</li>
+                    const errorLi = user.errors.map((err) => <li >{err}</li>)
                     setError(errorLi)
                 }
             })

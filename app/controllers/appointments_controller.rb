@@ -11,17 +11,16 @@ class AppointmentsController < ApplicationController
         render json: appointment 
        
     end
-    # q: why does show not work in the browser?
+
+    # q: why does page redirect after delete?
+
+
+    
+  
 
     def show
         render json: appointment
     end
-
-    # q: how can I not duplicate doctors when creating an appointment?
-    # a:
-
- 
-
 
     # def show
     #     appointment = current_user.appointments.find_by(id: params[:id])
@@ -37,18 +36,26 @@ class AppointmentsController < ApplicationController
             render json: appointment
     end
 
- 
 
-    def destroy
-        user = current_user
-        if user
-            appointment = Appointment.find_by_id(params[:id]) #?unxepeted Unexpected end of JSON input
-            appointment.destroy
-            head :no_content
-        end
-    end
-    # q: why is the delete method undifined?
-    # a: because you are not using the find_appointment method
+def destroy
+    appointment = current_user.appointments.find_by(id: params[:id])
+        appointment.destroy
+        head :no_content
+        # render json: {}
+end
+
+
+    # def destroy
+    #     user = current_user
+    #     if user
+    #         appointment = Appointment.find_by_id(params[:id]) 
+    #         appointment.destroy
+    #         head :no_content
+    #         render json: {}
+    #     end
+    # end
+
+  
     private 
 
     def current_user

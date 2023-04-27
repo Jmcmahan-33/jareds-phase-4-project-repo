@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -8,9 +8,6 @@ function NavBar() {
     const { user, logout, loggedIn } = useContext(UserContext)
     const navigate = useNavigate()
 
-    // create logged out function
-    // fetch the route 
-    // call the method and header
 
     const logoutUser = () => {
         fetch('/logout', {
@@ -23,6 +20,13 @@ function NavBar() {
 
             })
     }
+
+    // where should I write a use effect to re render the component?
+
+    useEffect(() => {
+        console.log("LOGGED", loggedIn)
+    }, [loggedIn])
+    
 
     if (loggedIn) {
         return (

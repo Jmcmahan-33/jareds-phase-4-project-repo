@@ -12,9 +12,7 @@ function UserProvider({ children }) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
     const [errors, setErrors] = useState([])
-    // should I be using appointment state
-    // const [appointments, setAppointments] = useState([])
-
+ 
 
     // console.log("User with nested data", user)
     useEffect(() => {
@@ -35,13 +33,13 @@ function UserProvider({ children }) {
                 // data.errors ? setLoggedIn(false) : setLoggedIn(true)
             })
     }, [])
-    console.log("User", user)
+    // console.log("User", user)
 
     const fetchDoctors = () => {
         fetch('/doctors')
             .then(res => res.json())
             .then(data => {
-                console.log("Doctors!",data)
+                // console.log("Doctors!",data)
                 setDoctors(data)
             })
     }
@@ -55,25 +53,29 @@ function UserProvider({ children }) {
         .then(res => res.json())
         .then(data => {
             setDoctors([...doctors, data])
-            console.log("new doctor", newDoctor)
-        })
-    }
-
-    
-   
-    const deleteAppointment = (appointmentId) => {
-        fetch(`/appointments/${appointmentId}`, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-        })
-        .then(res => res.json())
-        .then(data => {
-            // setAppointments(data)
-            // setUser([...user, data])
-
+            // console.log("new doctor", newDoctor)
         })
     }
     
+const ondeleteAppointment= (id) => {
+    const updatedAppointments = user.appointments.filter(apt => apt.id !== id)
+    setUser(updatedAppointments)
+
+}
+    
+
+const deleteAppointment= (id) => {
+    fetch(`/appointments/${id}`, {
+        method: "DELETE",
+    })
+        .then(setUser(ondeleteAppointment(id)))
+        // .catch(error => console.log(error))
+}
+
+// q:Delete request causes this error in react: TypeError: Cannot read properties of undefined (reading 'map')
+
+
+
 
     const addAppointment = (newAppointment) => {
         // const updatedUser = {...user, appointments: [...user.appointments, newAppointment]}

@@ -1,12 +1,15 @@
 // before refactor of login and signup 
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "./context/user";
 
 function Home() {
-
-
     const { user, loggedIn } = useContext(UserContext)
+
+    useEffect(() => {
+        console.log("LOGGED", loggedIn)
+       }, [loggedIn])
+       
    
     console.log("USER", user)
     if (loggedIn) {

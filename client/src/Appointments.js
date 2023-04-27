@@ -5,6 +5,7 @@ import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import AppointmentCard from "./AppointmentCard";
 import AppointmentForm from "./AppointmentForm";
+// import { useEffect } from "react";
 
 
 function Appointments() {
@@ -16,19 +17,26 @@ function Appointments() {
         setFormFlag(false)
     }
 
-    // try to set state for appointments in appointments so that the state is an empty array. 
 
+
+
+   
+
+//    useEffect(() => {
+//     //  console.log("LOGGED", loggedIn)
+//     }, [loggedIn])
+
+    // try to set state for appointments in appointments so that the state is an empty array. 
   
 
     if (loggedIn) {
+       
         const userAppointmentList = user.appointments.map(appointment =>
-            // <ul className="appointment-cards">
-            //     <li>{appointment.name} </li>
-            //     <li>{appointment.speciality}</li>
-            // </ul>
+          
             <AppointmentCard
                 key={appointment.id}
                 appointment={appointment}
+                id={appointment.id}
             />
         )
         return (
