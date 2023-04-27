@@ -19,6 +19,11 @@ function Appointments() {
     }
 
 
+    //  provide a useEffect that will re render the user.appointments when a appointment is deleted
+    
+
+
+
 
 
 
