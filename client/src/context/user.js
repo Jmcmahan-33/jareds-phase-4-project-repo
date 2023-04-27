@@ -57,20 +57,6 @@ function UserProvider({ children }) {
         })
     }
     
-const ondeleteAppointment= (id) => {
-    const updatedAppointments = user.appointments.filter(apt => apt.id !== id)
-    setUser(updatedAppointments)
-
-}
-
-
-const deleteAppointment= (id) => {
-    fetch(`/appointments/${id}`, {
-        method: "DELETE",
-    })
-        .then(setUser(ondeleteAppointment(id)))
-        // .catch(error => console.log(error))
-}
 
 
 
@@ -86,12 +72,42 @@ const deleteAppointment= (id) => {
             .then(res => res.json())
             .then(data => {
                 const updatedUser = {...user, appointments: [...user.appointments, data]} //  user with the new appointment
-                // setAppointments([...appointments, data])
                 setUser(updatedUser)
                 console.log("dataaaaa", data)
             })
     }
-  
+
+    // const ondeleteAppointment= (id) => {
+    //     const updatedAppointments = user.appointments.filter(apt => apt.id !== id)
+    //     setUser(updatedAppointments)
+    
+    // }
+    
+    
+    // const deleteAppointment= (id) => {
+    //     fetch(`/appointments/${id}`, {
+    //         method: "DELETE",
+    //     })
+    //         .then(setUser(ondeleteAppointment(id)))
+    //         // .catch(error => console.log(error))
+    // }
+    
+    const ondeleteAppointment = (id) => {
+        const updatedAppointments = user.appointments.filter(apt => apt.id !== id)
+        const updatedUser = { ...user, appointments: updatedAppointments }
+        return updatedUser
+      }
+      
+      const deleteAppointment = (id) => {
+        fetch(`/appointments/${id}`, {
+          method: "DELETE",
+        })
+          .then(() => {
+            const updatedUser = ondeleteAppointment(id)
+            setUser(updatedUser)
+          })
+          .catch(error => console.log(error))
+      }
 
 
     console.log("Logged In", loggedIn)
