@@ -57,11 +57,6 @@ function UserProvider({ children }) {
         })
     }
     
-
-
-
-
-
     const addAppointment = (newAppointment) => {
         // const updatedUser = {...user, appointments: [...user.appointments, newAppointment]}
         fetch('/appointments', {
@@ -77,24 +72,10 @@ function UserProvider({ children }) {
             })
     }
 
-    // const ondeleteAppointment= (id) => {
-    //     const updatedAppointments = user.appointments.filter(apt => apt.id !== id)
-    //     setUser(updatedAppointments)
-    
-    // }
-    
-    
-    // const deleteAppointment= (id) => {
-    //     fetch(`/appointments/${id}`, {
-    //         method: "DELETE",
-    //     })
-    //         .then(setUser(ondeleteAppointment(id)))
-    //         // .catch(error => console.log(error))
-    // }
-    
+   
     const ondeleteAppointment = (id) => {
-        const updatedAppointments = user.appointments.filter(apt => apt.id !== id)
-        const updatedUser = { ...user, appointments: updatedAppointments }
+        const updatedAppointments = user.appointments.filter(apt => apt.id !== id) // filter out the appointment that was deleted
+        const updatedUser = { ...user, appointments: updatedAppointments }  // update the user with the new appointments
         return updatedUser
       }
       
