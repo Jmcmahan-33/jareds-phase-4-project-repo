@@ -1,9 +1,5 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { UserContext } from "./context/user"
-
-// q:write a map method to display doctors in select tag with out duplicating.
-
-
 
 
 function AppointmentForm() {
@@ -12,6 +8,16 @@ function AppointmentForm() {
     const [id, setId] = useState("")
     
     const {  addAppointment, doctors, user } = useContext(UserContext)
+
+
+    useEffect(() => {
+        // localStorage.setItem("appointments", JSON.stringify(user))
+    }, [])
+
+
+
+
+   
    
 
     const handleSubmit = (e) => {

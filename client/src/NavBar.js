@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "./context/user";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -23,12 +23,12 @@ function NavBar() {
 
     // where should I write a use effect to re render the component?
 
-    useEffect(() => {
-        console.log("LOGGED", loggedIn)
-    }, [loggedIn])
+    // useEffect(() => {
+    //     console.log("LOGGED", loggedIn)
+    // }, [loggedIn])
     
 
-    if (loggedIn) {
+    if (loggedIn && user) {
         return (
             <div className="user-name">
                 <h3>HELLO {user.username}</h3>

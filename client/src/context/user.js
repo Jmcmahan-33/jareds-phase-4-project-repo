@@ -62,7 +62,7 @@ const ondeleteAppointment= (id) => {
     setUser(updatedAppointments)
 
 }
-    
+
 
 const deleteAppointment= (id) => {
     fetch(`/appointments/${id}`, {
@@ -72,7 +72,6 @@ const deleteAppointment= (id) => {
         // .catch(error => console.log(error))
 }
 
-// q:Delete request causes this error in react: TypeError: Cannot read properties of undefined (reading 'map')
 
 
 
