@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-   before_action :find_appointment, except: [:index, :create, :destroy, :update]
+   before_action :find_appointment, except: [:index, :create, :update]
 
 
 
@@ -53,6 +53,8 @@ class AppointmentsController < ApplicationController
     def find_appointment
         @appointment = @current_user.appointments.find_by(id: params[:id])
     end
+
+
 end
 
 
