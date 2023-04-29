@@ -23,7 +23,7 @@ function Doctors() {
         const doctorList = doctors.map(doctor =>
        
             <DoctorCard
-                key={doctor.doctor_id} 
+                key={doctor.id} 
                 // may go back to doctor.id in line above.
                 doctor={doctor}
             />

@@ -9,21 +9,24 @@ import Login from './Login'
 import Doctors from './Doctors';
 // import DoctorForm from './DoctorForm';
 import Appointments from './Appointments';
-import AppointmentForm from './AppointmentForm';
+import AppointmentEdit from './AppointmentEdit';
+// import AppointmentForm from './AppointmentForm';
 
 function App() {
   return (
     <div className="App">
       <UserProvider>
         <NavBar />
+        {/* <AppointmentEdit /> */}
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/appointments" element={<Appointments/>} />
+          <Route path="/edit-form" element={<AppointmentEdit/>} />
           {/* <Route path='/doctor-form' element={<DoctorForm />} /> */}
-          <Route path='/appointment-form' element={<AppointmentForm />} />
+          {/* <Route path='/appointment-form' element={<AppointmentForm />} /> */}
         </Routes>
 
       </UserProvider>
