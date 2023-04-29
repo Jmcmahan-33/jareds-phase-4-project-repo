@@ -1,59 +1,41 @@
 class AppointmentsController < ApplicationController
-   before_action :authorize
+   before_action :find_appointment, except: [:index, :create, :destroy, :update]
+
+
+
 
     def index 
-        appointments = current_user.appointments
+        appointments = @current_user.appointments
         render json: appointments
     end
 
     def create
-        appointment = current_user.appointments.create(appointment_params)
+        appointment = @current_user.appointments.create(appointment_params)
         render json: appointment 
        
     end
 
-    # q: why does page redirect after delete?
-
-
-    
-  
-
+   
     def show
-        render json: appointment
+        render json: @appointment
     end
-
-    # def show
-    #     appointment = current_user.appointments.find_by(id: params[:id])
-    #     if appointment 
-    #         render json: appointment
-    #     else
-    #         render json: {errors: "Not Found"}, status: :unauthorized
-    #     end
-    # end 
 
     def update
-            appointment.update(appointment_params)
-            render json: appointment
+        if @appointment
+            @appointment.update(appointment_params)
+            render json: @appointment
+        else
+            render json: {error: "Appointment not found"}, status: :not_found
+        end
     end
 
 
-def destroy
-    appointment = current_user.appointments.find_by(id: params[:id])
+   
+    def destroy
+        appointment = @appointment
         appointment.destroy
         head :no_content
-        # render json: {}
-end
-
-
-    # def destroy
-    #     user = current_user
-    #     if user
-    #         appointment = Appointment.find_by_id(params[:id]) 
-    #         appointment.destroy
-    #         head :no_content
-    #         render json: {}
-    #     end
-    # end
+    end
 
   
     private 
@@ -64,17 +46,19 @@ end
         User.find_by(id: session[:user_id])
     end
 
-    # def find_appointment
-    #   appointment = @current_user.appointments.find_by(id: params[:id])
-    #   render json: { error: "Appointment not found" }, status: :not_found unless appointment
-    # end
-
     def appointment_params
         params.permit(:date_field, :reason_for_visit, :doctor_id)
     end
 
-    # def authorize
+    def find_appointment
+        @appointment = @current_user.appointments.find_by(id: params[:id])
+    end
+end
+
+
+
+
+
+  # def authorize
     #     return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
     # end 
-
-end

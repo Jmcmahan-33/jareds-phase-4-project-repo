@@ -7,33 +7,30 @@ const UserContext = React.createContext();
 
 function UserProvider({ children }) {
     const navigate = useNavigate()
-  
+
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [doctors, setDoctors] = useState([])
     const [errors, setErrors] = useState([])
- 
 
-    // console.log("User with nested data", user)
     useEffect(() => {
         fetch('/me')
             .then(res => res.json())
             .then(data => {
                 setUser(data)
-                if(data.errors)  {
+                if (data.errors) {
                     // if there is an error
                     setLoggedIn(false)
                     setErrors(data.errors) // set errors to the errors from the backend
-                    
+
                 } else {
                     // if there is a user 
                     setLoggedIn(true)
                     fetchDoctors()
                 }
-                // data.errors ? setLoggedIn(false) : setLoggedIn(true)
             })
     }, [])
-    // console.log("User", user)
+
 
     const fetchDoctors = () => {
         fetch('/doctors')
@@ -47,16 +44,16 @@ function UserProvider({ children }) {
     const addDoctor = (newDoctor) => {
         fetch('/doctors', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newDoctor)
         })
-        .then(res => res.json())
-        .then(data => {
-            setDoctors([...doctors, data])
-            // console.log("new doctor", newDoctor)
-        })
+            .then(res => res.json())
+            .then(data => {
+                setDoctors([...doctors, data])
+                // console.log("new doctor", newDoctor)
+            })
     }
-    
+
     const addAppointment = (newAppointment) => {
         // const updatedUser = {...user, appointments: [...user.appointments, newAppointment]}
         fetch('/appointments', {
@@ -66,29 +63,43 @@ function UserProvider({ children }) {
         })
             .then(res => res.json())
             .then(data => {
-                const updatedUser = {...user, appointments: [...user.appointments, data]} //  user with the new appointment
+                const updatedUser = { ...user, appointments: [...user.appointments, data] } //  user with the new appointment
                 setUser(updatedUser)
-                console.log("dataaaaa", data)
+                console.log("data add", data)
             })
     }
 
-   
+
     const ondeleteAppointment = (id) => {
         const updatedAppointments = user.appointments.filter(apt => apt.id !== id) // filter out the appointment that was deleted
         const updatedUser = { ...user, appointments: updatedAppointments }  // update the user with the new appointments
         return updatedUser
-      }
-      
-      const deleteAppointment = (id) => {
+    }
+
+    const deleteAppointment = (id) => {
         fetch(`/appointments/${id}`, {
-          method: "DELETE",
+            method: "DELETE",
         })
-          .then(() => {
-            const updatedUser = ondeleteAppointment(id)
-            setUser(updatedUser)
-          })
-          .catch(error => console.log(error))
-      }
+            .then(() => {
+                const updatedUser = ondeleteAppointment(id)
+                setUser(updatedUser)
+            })
+            .catch(error => console.log(error))
+    }
+
+    const updateAppointment = (apt) => {
+        fetch(`/appointments/${apt.id}`, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(apt)
+        })
+            .then(res => res.json())
+            .then(data => console.log("update",data))
+    }
+
+
+
+
 
 
     console.log("Logged In", loggedIn)
@@ -97,38 +108,28 @@ function UserProvider({ children }) {
         // set user to context
         setUser(user)
         fetchDoctors()
-        // fetchAppointments()
         setLoggedIn(true)
 
     }
-
-   
 
     const logout = () => {
         // if logged out, get rid of the user
         setUser({})
         setDoctors([])
-        // setAppointments([])
-        // if user is not logged in 
         setLoggedIn(false)
         navigate('/')
-
     }
+
     const signup = (user) => {
         setUser(user)
         fetchDoctors()
-        // fetchAppointments()
         setLoggedIn(true)
-
     }
 
-
-// remember to take out appointments in the return if appointments fetch is not used. 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, deleteAppointment, errors}}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment,updateAppointment, deleteAppointment, errors }}>
             {children}
         </UserContext.Provider>
     )
 }
-
 export { UserContext, UserProvider }

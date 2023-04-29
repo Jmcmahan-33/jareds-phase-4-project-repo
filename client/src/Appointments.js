@@ -5,38 +5,19 @@ import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import AppointmentCard from "./AppointmentCard";
 import AppointmentForm from "./AppointmentForm";
-// import { useEffect } from "react";
-
 
 
 function Appointments() {
     const { user, loggedIn } = useContext(UserContext)
     const [formFlag, setFormFlag] = useState(false)
-    // const [appointmentList, setAppointmentList] = useState([])
- 
+
     const addAppointmentFlag = () => {
         setFormFlag(false)
     }
 
-
-    //  provide a useEffect that will re render the user.appointments when a appointment is deleted
-    
-
-
-
-
-
-
-
-
-
-
-
-
     if (loggedIn) {
-       
         const userAppointmentList = user?.appointments?.map(appointment =>
-          
+
             <AppointmentCard
                 key={appointment.id}
                 appointment={appointment}
@@ -58,11 +39,8 @@ function Appointments() {
                         :
                         <button onClick={() => setFormFlag(true)}>Schedule Appointment</button>
                     }
-
                 </div>
-
             </div>
-
         )
     } else {
         return (

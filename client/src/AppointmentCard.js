@@ -2,11 +2,16 @@ import { Button, Grid } from "@mui/material"
 import { Paper } from "@mui/material"
 import { useContext } from "react"
 import { UserContext } from "./context/user"
+import { useState } from "react"
+import AppointmentEdit from "./AppointmentEdit"
 
 
 
 function AppointmentCard({ appointment }) {
     const {  deleteAppointment } = useContext(UserContext)
+    const [showForm, setShowForm] = useState(false)
+
+
 
 
 
@@ -23,7 +28,9 @@ function AppointmentCard({ appointment }) {
                     <li>{appointment.date_field} </li>
             
                 </ul >
+                <Button onClick={() => setShowForm(true)}>Edit</Button>
                 <Button onClick={()=> deleteAppointment(appointment.id)}>Cancel</Button>
+                {showForm ? <AppointmentEdit appointment={appointment} setShowForm={setShowForm} /> : null}
             </Paper>
         </Grid>
 
