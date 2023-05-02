@@ -71,8 +71,8 @@ function UserProvider({ children }) {
 
 
     const ondeleteAppointment = (id) => {
-        const updatedAppointments = user.appointments.filter(apt => apt.id !== id) // filter out the appointment that was deleted
-        const updatedUser = { ...user, appointments: updatedAppointments }  // update the user with the new appointments
+        const deletedAppointments = user.appointments.filter(apt => apt.id !== id) // filter out the appointment that was deleted
+        const updatedUser = { ...user, appointments: deletedAppointments }  // update the user with the new appointments
         return updatedUser
     }
 
@@ -86,18 +86,40 @@ function UserProvider({ children }) {
             })
             .catch(error => console.log(error))
     }
+    // q: fix the 404 Not Found error for Patch
+    // a: the id was not being passed in correctly
+    // q:where is the id not being passed in correctly?
 
-    const updateAppointment = (apt) => {
-        fetch(`/appointments/${apt.id}`, {
-            method: "PATCH",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(apt)
+
+
+    const handleAppointmentInfo = (updatedAppointment) => {
+        const updatedAppointments = user.appointments.map(apt => {
+            if (apt.id === updatedAppointment.id) {
+                console.log("showid",updatedAppointment.id)
+                return updatedAppointment
+            } else {
+                return apt
+            }
         })
-            .then(res => res.json())
-            .then(data => console.log("update",data))
+        const updatedUser = { ...user, appointments: updatedAppointments }
+        setUser(updatedUser)
+        console.log("updated appt", updatedAppointment)
     }
 
 
+
+    const updateAppointment = ( id, appointment) => {
+        console.log("APT", id)
+        fetch(`/appointments/${id}`, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(appointment)
+        })
+            .then((res) => res.json())
+            .then((data) => handleAppointmentInfo("Updated Appointment", data))
+            console.log("current appt",appointment.id)
+            setErrors([])
+    }
 
 
 
@@ -127,7 +149,7 @@ function UserProvider({ children }) {
     }
 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment,updateAppointment, deleteAppointment, errors }}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, updateAppointment, deleteAppointment, errors }}>
             {children}
         </UserContext.Provider>
     )

@@ -8,8 +8,9 @@ import AppointmentEdit from "./AppointmentEdit"
 
 
 function AppointmentCard({ appointment }) {
-    const {  deleteAppointment } = useContext(UserContext)
+    const {  deleteAppointment, updateAppointment} = useContext(UserContext)
     const [showForm, setShowForm] = useState(false)
+    // const [selectedAppt, setSelectedAppt] = useState(appointment)
 
 
 
@@ -28,9 +29,9 @@ function AppointmentCard({ appointment }) {
                     <li>{appointment.date_field} </li>
             
                 </ul >
-                <Button onClick={() => setShowForm(true)}>Edit</Button>
+                <Button onClick={() => updateAppointment(appointment.id)}>Edit</Button>
                 <Button onClick={()=> deleteAppointment(appointment.id)}>Cancel</Button>
-                {showForm ? <AppointmentEdit appointment={appointment} setShowForm={setShowForm} /> : null}
+                {showForm ? <AppointmentEdit appointmentId={appointment.id}/> : null}
             </Paper>
         </Grid>
 
