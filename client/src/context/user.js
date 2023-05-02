@@ -103,24 +103,22 @@ function UserProvider({ children }) {
         })
         const updatedUser = { ...user, appointments: updatedAppointments }
         setUser(updatedUser)
-        console.log("updated appt", updatedAppointment)
+        
     }
 
-
-
-    const updateAppointment = ( id, appointment) => {
-        console.log("APT", id)
-        fetch(`/appointments/${id}`, {
-            method: "PATCH",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(appointment)
+    const updateAppointment = (id, appointment) => {
+        const url = `/appointments/${id}`;
+        console.log('Updating appointment with ID', id, 'at URL', url);
+        
+        fetch(url, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(appointment)
         })
-            .then((res) => res.json())
-            .then((data) => handleAppointmentInfo("Updated Appointment", data))
-            console.log("current appt",appointment.id)
-            setErrors([])
-    }
-
+          .then((res) => res.json())
+          .then((data) => handleAppointmentInfo(data))
+          .catch((error) => console.log(error));
+      }
 
 
 

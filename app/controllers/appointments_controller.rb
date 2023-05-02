@@ -1,5 +1,7 @@
 class AppointmentsController < ApplicationController
-   before_action :find_appointment, except: [:index, :create, :update]
+   before_action :find_appointment, except: [:index, :create]
+#    q: how do I make update go through authorize? 
+    # before_action :authorize, only: [:update]
 
 
 

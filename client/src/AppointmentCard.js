@@ -9,7 +9,7 @@ import AppointmentEdit from "./AppointmentEdit"
 
 function AppointmentCard({ appointment }) {
     const {  deleteAppointment, updateAppointment} = useContext(UserContext)
-    const [showForm, setShowForm] = useState(false)
+    // const [showForm, setShowForm] = useState(false)
     // const [selectedAppt, setSelectedAppt] = useState(appointment)
 
 
@@ -22,6 +22,7 @@ function AppointmentCard({ appointment }) {
     return (
         <Grid item xs={3}>
             <Paper elevation={3}>
+                <AppointmentEdit appointmentId={appointment.id} />
                 < ul className="appointment-cards" >
                     <h3>Appointment</h3>
                     <li> Appointment with:{appointment.doctor.name}</li>
@@ -31,7 +32,7 @@ function AppointmentCard({ appointment }) {
                 </ul >
                 <Button onClick={() => updateAppointment(appointment.id)}>Edit</Button>
                 <Button onClick={()=> deleteAppointment(appointment.id)}>Cancel</Button>
-                {showForm ? <AppointmentEdit appointmentId={appointment.id}/> : null}
+               
             </Paper>
         </Grid>
 
