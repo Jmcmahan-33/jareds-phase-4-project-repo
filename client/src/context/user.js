@@ -69,6 +69,7 @@ function UserProvider({ children }) {
             })
     }
 
+// q: whats a better name for deletedAppointments?
 
     const ondeleteAppointment = (id) => {
         const deletedAppointments = user.appointments.filter(apt => apt.id !== id) // filter out the appointment that was deleted
@@ -86,23 +87,19 @@ function UserProvider({ children }) {
             })
             .catch(error => console.log(error))
     }
-    // q: fix the 404 Not Found error for Patch
-    // a: the id was not being passed in correctly
-    // q:where is the id not being passed in correctly?
-
-
+   
 
     const handleAppointmentInfo = (updatedAppointment) => {
-        const updatedAppointments = user.appointments.map(apt => {
-            if (apt.id === updatedAppointment.id) {
+        const updatedAppointments = user.appointments.map(apt => { // map through the appointments and find the one that matches the updated appointment
+            if (apt.id === updatedAppointment.id) { // if the appointment id matches the updated appointment id
                 console.log("showid",updatedAppointment.id)
                 return updatedAppointment
             } else {
                 return apt
             }
         })
-        const updatedUser = { ...user, appointments: updatedAppointments }
-        setUser(updatedUser)
+        const updatedUser = { ...user, appointments: updatedAppointments } // update the user with the new appointments
+        setUser(updatedUser) //
         
     }
 
