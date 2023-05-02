@@ -11,6 +11,8 @@ function Appointments() {
     const { user, loggedIn } = useContext(UserContext)
     const [formFlag, setFormFlag] = useState(false)
 
+    
+
     const addAppointmentFlag = () => {
         setFormFlag(false)
     }

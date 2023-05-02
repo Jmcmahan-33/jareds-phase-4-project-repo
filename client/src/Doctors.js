@@ -18,16 +18,18 @@ function Doctors() {
     const addDoctorFlag = () => {
         setFormFlag(false)
     }
+    console.log("doctor", doctors)
 
     if (loggedIn) {
         const doctorList = doctors.map(doctor =>
+            
        
             <DoctorCard
                 key={doctor.id} 
-                // may go back to doctor.id in line above.
                 doctor={doctor}
             />
         )
+        
         return (
             <div>
                 <h1>Doctors:</h1>

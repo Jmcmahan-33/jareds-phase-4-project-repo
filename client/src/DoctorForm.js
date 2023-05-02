@@ -24,6 +24,12 @@ function DoctorForm() {
             notes: notes
 
         })
+
+        setName("")
+        setSpeciality("")
+        setRoom("")
+        setRate("")
+        setNotes("")
     }
 
     return (

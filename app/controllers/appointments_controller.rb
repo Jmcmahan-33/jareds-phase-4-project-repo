@@ -1,10 +1,5 @@
 class AppointmentsController < ApplicationController
    before_action :find_appointment, except: [:index, :create]
-#    q: how do I make update go through authorize? 
-  
-
-
-
 
     def index 
         appointments = @current_user.appointments
