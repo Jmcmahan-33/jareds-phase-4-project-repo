@@ -54,12 +54,15 @@ function AppointmentCard({ appointment }) {
     const handleEditClick = () => {
         setShowForm(true)
     }
+    const handleEditClose = () => {
+        setShowForm(false)
+    }
 
     return (
         <Grid item xs={3}>
             <Paper elevation={3}>
                 {showForm ? (
-                    <AppointmentEdit appointmentId={appointment.id} />
+                    <AppointmentEdit appointment={appointment} onClose = {handleEditClose} />
                 ) : (
                     <ul className="appointment-cards">
                         <h3>Appointment</h3>

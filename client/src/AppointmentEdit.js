@@ -10,19 +10,20 @@ import { UserContext } from "./context/user";
 // a: see below
 
 
-function AppointmentEdit({ appointmentId }) {
+function AppointmentEdit({ appointment, onClose }) {
     const { updateAppointment, user} = useContext(UserContext);
-    const [aptInfo, setAptInfo] = useState("");
+    const [aptInfo, setAptInfo] = useState(appointment.date_field);
     const [isEditing, setIsEditing] = useState(false);
-    console.log("appointmentId", appointmentId)
+    console.log("appointment", appointment)
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateAppointment(appointmentId, {
+        updateAppointment(appointment.id, {
             date_field: aptInfo,
             user_id: user.id,
-            id: appointmentId,
+            id: appointment.id,
         });
         setIsEditing(false);
+        onClose()
     };
 
     if (!isEditing) {

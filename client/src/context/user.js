@@ -115,6 +115,7 @@ function UserProvider({ children }) {
           .then((res) => res.json())
           .then((data) => handleAppointmentInfo(data))
           .catch((error) => console.log(error));
+          
       }
 
 
