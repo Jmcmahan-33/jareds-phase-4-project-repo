@@ -64,6 +64,7 @@ function UserProvider({ children }) {
                 } else {
                     const updatedUser = { ...user, appointments: [...user.appointments, data] }
                     setUser(updatedUser)
+                    setErrors([])
 
                 }
             })
