@@ -1,13 +1,11 @@
 import React, { useContext, useState} from "react"
 import { UserContext } from "./context/user"
-import { useNavigate } from "react-router-dom";
-
 
 function AppointmentForm() {
-    const navigate = useNavigate()
     const [reason, setReason] = useState("")
     const [date, setDate] = useState("")
     const [id, setId] = useState("")
+    const [submitted, setSubmitted] = useState(false)
     const { addAppointment, doctors, user, errors, setErrors } = useContext(UserContext)
 
 
@@ -22,11 +20,18 @@ function AppointmentForm() {
             date_field: date,
             doctor_id: id,
         })
-        navigate('/appointments')
+        setSubmitted(true)
         setReason("")
         setDate("")
         setId("")
     }
+
+    const resetForm = () => {
+        setSubmitted(false);
+        setReason("");
+        setDate("");
+        setId("");
+      };
 
 
     const removeDuplicates = (duplicates) => {
@@ -49,7 +54,7 @@ function AppointmentForm() {
     console.log("optionsList", optionsList)
 
 
-
+    if (!submitted) {
     return (
         <div>
             <h1>Schedule Appointment</h1>
@@ -82,12 +87,19 @@ function AppointmentForm() {
                 <br />
                 {errors}
                 <br />
-
                 <button type="submit">Schedule</button>
             </form>
         </div>
 
     )
+    } else {
+        return (
+            <div>
+                <h1>Appointment Scheduled!</h1>
+                <button onClick={resetForm}>Schedule Another</button>
+            </div>
+        )
+    }
 
 }
 
