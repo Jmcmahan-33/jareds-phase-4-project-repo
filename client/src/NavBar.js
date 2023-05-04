@@ -34,10 +34,10 @@ function NavBar() {
                 <h3>HELLO {user.username}</h3>
                 <Button variant= "text" onClick={logoutUser}>Log out</Button>
                 <NavLink to='/doctors'>
-                    <Button variant="text">Doctors</Button>
+                    <Button variant="text">Browse Doctors</Button>
                 </NavLink>
                 <NavLink to='/appointments'>
-                    <Button variant="text">Appointments</Button>
+                    <Button variant="text">My Appointments</Button>
                 </NavLink>
             </div>
 

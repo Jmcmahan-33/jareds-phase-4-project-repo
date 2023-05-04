@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-   before_action :find_appointment, except: [:index, :create]
+    before_action :find_appointment, except: [:index, :create]
 
     def index 
         appointments = @current_user.appointments
@@ -7,7 +7,7 @@ class AppointmentsController < ApplicationController
     end
 
     def create
-        appointment = @current_user.appointments.create(appointment_params)
+        appointment = @current_user.appointments.create!(appointment_params)
         render json: appointment 
        
     end
@@ -26,17 +26,26 @@ class AppointmentsController < ApplicationController
         end
     end
 
-
-   
     def destroy
-        appointment = @appointment
-        appointment.destroy
-        head :no_content
+        if @appointment
+            @appointment.destroy
+            head :no_content
+        else
+            render json: {error: "Appointment not found"}, status: :not_found
+        end
     end
 
+
+
+
+   
+    # def destroy
+    #     appointment = @appointment
+    #     appointment.destroy
+    #     head :no_content
+    # end
   
     private 
-
     def current_user
         # get current user through User
         # find user id in the session hash
@@ -49,8 +58,8 @@ class AppointmentsController < ApplicationController
 
     def find_appointment
         @appointment = @current_user.appointments.find_by(id: params[:id])
+        render json: { error: "Appointment not found" }, status: :not_found unless @appointment
     end
-
 
 end
 

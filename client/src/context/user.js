@@ -17,15 +17,15 @@ function UserProvider({ children }) {
                 setUser(data)
                 if (data.errors) {
                     setLoggedIn(false)
-                    setErrors(data.errors) 
+                    setErrors(data.errors)
                 } else {
                     setLoggedIn(true)
                     fetchDoctors()
                 }
             })
     }, [])
+    // console.log(user.appointments)
 
-    
 
     const fetchDoctors = () => {
         fetch('/doctors')
@@ -34,6 +34,8 @@ function UserProvider({ children }) {
                 setDoctors(data)
             })
     }
+
+    // add error handling for addDoctor.
 
     const addDoctor = (newDoctor) => {
         fetch('/doctors', {
@@ -47,7 +49,7 @@ function UserProvider({ children }) {
                 console.log("new doctor", data)
             })
     }
-    
+
 
     const addAppointment = (newAppointment) => {
         fetch('/appointments', {
@@ -57,15 +59,22 @@ function UserProvider({ children }) {
         })
             .then(res => res.json())
             .then(data => {
-                const updatedUser = { ...user, appointments: [...user.appointments, data] }
-                setUser(updatedUser)
-                console.log("data add", data)
+                if (data.errors) {
+                    setErrors(data.errors)
+                } else {
+                    const updatedUser = { ...user, appointments: [...user.appointments, data] }
+                    setUser(updatedUser)
+
+                }
             })
+            .catch(error => console.log(error))
     }
+
+
 
     const ondeleteAppointment = (id) => {
         const deletedAppointments = user.appointments.filter(apt => apt.id !== id)
-        const updatedUser = { ...user, appointments: deletedAppointments }  
+        const updatedUser = { ...user, appointments: deletedAppointments }
         return updatedUser
     }
 
@@ -87,32 +96,32 @@ function UserProvider({ children }) {
     //         .then(setUser({...user,appointments: [...user.appointments.filter(appointment => appointment.id !== id)]}))
     // }
 
-   
+
     const handleAppointmentInfo = (updatedAppointment) => {
-        const updatedAppointments = user.appointments.map(apt => { 
-            if (apt.id === updatedAppointment.id) { 
-                console.log("showid",updatedAppointment.id)
+        const updatedAppointments = user.appointments.map(apt => {
+            if (apt.id === updatedAppointment.id) {
+                console.log("showid", updatedAppointment.id)
                 return updatedAppointment
             } else {
                 return apt
             }
         })
         const updatedUser = { ...user, appointments: updatedAppointments }
-        setUser(updatedUser) 
+        setUser(updatedUser)
     }
 
     const updateAppointment = (id, appointment) => {
         const url = `/appointments/${id}`;
         console.log('Updating appointment with ID', id, 'at URL', url);
         fetch(url, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(appointment)
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(appointment)
         })
-          .then((res) => res.json())
-          .then((data) => handleAppointmentInfo(data))
-          .catch((error) => console.log(error));   
-      }
+            .then((res) => res.json())
+            .then((data) => handleAppointmentInfo(data))
+            .catch((error) => console.log(error));
+    }
 
     console.log("Logged In", loggedIn)
 
@@ -137,7 +146,7 @@ function UserProvider({ children }) {
     }
 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, updateAppointment, deleteAppointment, errors }}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, updateAppointment, deleteAppointment, errors, setErrors}}>
             {children}
         </UserContext.Provider>
     )

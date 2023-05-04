@@ -1,46 +1,38 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useState} from "react"
 import { UserContext } from "./context/user"
+import { useNavigate } from "react-router-dom";
 
 
 function AppointmentForm() {
+    const navigate = useNavigate()
     const [reason, setReason] = useState("")
     const [date, setDate] = useState("")
     const [id, setId] = useState("")
-    
-    const {  addAppointment, doctors, user } = useContext(UserContext)
+    const { addAppointment, doctors, user, errors, setErrors } = useContext(UserContext)
 
-
-    useEffect(() => {
-        // localStorage.setItem("appointments", JSON.stringify(user))
-    }, [])
-
-
-
-
-   
-   
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if (!reason || !date) {
+            setErrors([...errors, "Please provide Information."])
+            return
+        }
         addAppointment({
             reason_for_visit: reason,
             date_field: date,
             doctor_id: id,
-
         })
+        navigate('/appointments')
         setReason("")
         setDate("")
         setId("")
     }
 
 
-
-    
-
     const removeDuplicates = (duplicates) => {
         const flag = {};
         const unique = []
-        duplicates.forEach(doctor => { 
+        duplicates.forEach(doctor => {
             if (!flag[doctor.id]) {
                 flag[doctor.id] = true;
                 unique.push(doctor);
@@ -48,7 +40,7 @@ function AppointmentForm() {
         });
         return unique;
     }
-    console.log("!!!",doctors)
+    console.log("!!!", doctors)
 
     const optionsList = removeDuplicates(doctors).map(doctor =>
         <option key={doctor.id} value={doctor.id}>{doctor.name}</option>)
@@ -77,6 +69,7 @@ function AppointmentForm() {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                 />
+
                 <br />
                 <select
                     name="doctor_id"
@@ -86,7 +79,9 @@ function AppointmentForm() {
                 >
                     {optionsList}
                 </select>
-                <br/>
+                <br />
+                {errors}
+                <br />
 
                 <button type="submit">Schedule</button>
             </form>

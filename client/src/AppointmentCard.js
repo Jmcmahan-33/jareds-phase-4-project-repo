@@ -66,7 +66,7 @@ function AppointmentCard({ appointment }) {
                 ) : (
                     <ul className="appointment-cards">
                         <h3>Appointment</h3>
-                        <li> Appointment with:{appointment.doctor.name}</li>
+                        <li> Appointment with:{appointment?.doctor?.name}</li>
                         <li>{appointment.reason_for_visit} </li>
                         <li>{appointment.date_field} </li>
                     </ul>
