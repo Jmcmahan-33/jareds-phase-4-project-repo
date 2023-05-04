@@ -1,6 +1,7 @@
 class DoctorsController < ApplicationController
     before_action :authorize, only: [:create]
 
+
     def index
         doctors = Doctor.all
         render json: doctors
