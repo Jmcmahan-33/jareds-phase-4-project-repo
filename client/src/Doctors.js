@@ -7,6 +7,7 @@ import DoctorForm from "./DoctorForm"
 import DoctorCard from './DoctorCard';
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
+import { Button } from "@mui/material";
 
 
 
@@ -31,8 +32,8 @@ function Doctors() {
         )
         
         return (
-            <div>
-                <h1>Doctors:</h1>
+            <div className="list-container">
+                <h1 className="list-header">Doctors</h1>
                 <br />
                 <div className="doctor-container">
                     <Container>
@@ -43,7 +44,7 @@ function Doctors() {
                     {formFlag ?
                         <DoctorForm addDoctorFlag={addDoctorFlag} />
                         :
-                        <button onClick={() => setFormFlag(true)}>Add Doctor</button>
+                        <Button variant="contained" onClick={() => setFormFlag(true)}>Add Doctor</Button>
                     }
 
                 </div>

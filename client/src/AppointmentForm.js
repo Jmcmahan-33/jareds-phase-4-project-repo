@@ -21,16 +21,10 @@ function AppointmentForm() {
             doctor_id: id,
         })
         setSubmitted(true)
-        setReason("")
-        setDate("")
-        setId("")
     }
 
     const resetForm = () => {
         setSubmitted(false);
-        setReason("");
-        setDate("");
-        setId("");
       };
 
 
