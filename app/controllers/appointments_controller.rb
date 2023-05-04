@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
     before_action :find_appointment, except: [:index, :create]
 
+
     def index 
         appointments = @current_user.appointments
         render json: appointments

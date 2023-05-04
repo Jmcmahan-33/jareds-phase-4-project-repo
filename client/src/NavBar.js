@@ -35,7 +35,7 @@ function NavBar() {
         )
     } else {
         return (
-            <div>
+            <div className="nav-links">
                 <NavLink to='/login'>
                     <Button variant="text">Log in</Button>
                 </NavLink>

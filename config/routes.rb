@@ -15,5 +15,5 @@ Rails.application.routes.draw do
   # doctors routes
   post "/doctors", to: "doctors#create"
   
-  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+  # get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
