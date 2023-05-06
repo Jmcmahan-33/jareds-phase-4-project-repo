@@ -46,8 +46,14 @@ body {
   text-align: center;
 }
 
+.nav-links {
+  padding: 15px;
+}
 
 
+.nav-links > * {
+  margin: 0 10px;
+}
 
 
 

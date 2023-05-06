@@ -37,10 +37,10 @@ function NavBar() {
         return (
             <div className="nav-links">
                 <NavLink to='/login'>
-                    <Button variant="text">Log in</Button>
+                    <Button variant="contained">Log in</Button>
                 </NavLink>
                 <NavLink to='/signup'>
-                    <Button variant="text">Sign up</Button>
+                    <Button variant="contained">Sign up</Button>
                 </NavLink>
             </div>
         )
