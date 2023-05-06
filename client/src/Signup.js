@@ -1,19 +1,9 @@
 import React, { useContext, useState } from "react"
 import { UserContext } from "./context/user"
 import { useNavigate } from "react-router-dom"
-
 import Grid from '@mui/material/Grid';
 import { Paper, TextField } from "@mui/material";
 import Button from '@mui/material/Button'
-// provide useContext 
-
-
-// full_name
-// age 
-// username
-// password
-// password confirmation
-
 
 function Signup() {
     const [fullName, setFullName] = useState("")

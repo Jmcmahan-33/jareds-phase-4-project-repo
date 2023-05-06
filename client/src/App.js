@@ -9,11 +9,13 @@ import Login from './Login'
 import Doctors from './Doctors';
 import Appointments from './Appointments';
 import AppointmentEdit from './AppointmentEdit';
+import Header from './Header';
 
 function App() {
   return (
     <div className="App">
       <UserProvider>
+        <Header />
         <div >
           <NavBar />
         </div>

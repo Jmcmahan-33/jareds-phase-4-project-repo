@@ -17,8 +17,7 @@ function Home() {
     } else {
         return (
             <div className="text-style">
-                <h1>My Doc App</h1>
-                <h2>Sign up or Log In</h2>
+                <h2>Please Sign up or Login</h2>
             </div>
         )
     }
