@@ -45,9 +45,14 @@ function UserProvider({ children }) {
         })
             .then(res => res.json())
             .then(data => {
-                setDoctors([...doctors, data])
-                console.log("new doctor", data)
+                if (data.errors) {
+                    setErrors(data.errors)
+                } else {
+                    setDoctors([...doctors, data])
+                    setErrors([])
+                }
             })
+            .catch(error => console.log(error))
     }
 
 
