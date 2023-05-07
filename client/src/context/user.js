@@ -35,8 +35,6 @@ function UserProvider({ children }) {
             })
     }
 
-    // add error handling for addDoctor.
-
     const addDoctor = (newDoctor) => {
         fetch('/doctors', {
             method: 'POST',

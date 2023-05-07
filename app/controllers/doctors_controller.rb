@@ -7,10 +7,6 @@ class DoctorsController < ApplicationController
         render json: doctors
     end 
 
-    # def create 
-    #     doctor = current_user.doctors.create(doctor_params)
-    #     render json: doctor, status: :created
-    # end
     def create 
         doctor = Doctor.create(doctor_params)
         render json: doctor, status: :created

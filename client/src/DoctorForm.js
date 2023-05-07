@@ -7,10 +7,14 @@ function DoctorForm() {
     const [room, setRoom] = useState("")
     const [rate, setRate] = useState("")
     const [notes, setNotes] = useState("")
-    const { addDoctor } = useContext(UserContext)
+    const { addDoctor, errors, setErrors } = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        if (!name) {
+            setErrors([...errors, "Please provide Information."])
+            return
+        }
         addDoctor({
             name: name,
             speciality: speciality,
@@ -38,6 +42,7 @@ function DoctorForm() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
+                {errors.length > 0 && <p>{errors[errors.length - 1]}</p>}
                 <input
                     placeholder="speciality"
                     type="text"
