@@ -36,15 +36,6 @@ class AppointmentsController < ApplicationController
         end
     end
 
-
-
-
-   
-    # def destroy
-    #     appointment = @appointment
-    #     appointment.destroy
-    #     head :no_content
-    # end
   
     private 
     def current_user

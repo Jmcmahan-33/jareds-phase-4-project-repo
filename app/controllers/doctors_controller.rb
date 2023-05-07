@@ -1,5 +1,6 @@
 class DoctorsController < ApplicationController
-    before_action :authorize, only: [:create]
+    # before_action :authorize, only: [:create, :index]
+    before_action :authorize
 
 
     def index
@@ -22,7 +23,7 @@ class DoctorsController < ApplicationController
         params.permit(:name, :speciality, :room_number, :rate, :notes)
     end 
 
-    def authorize
-        return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
-    end 
+    # def authorize
+    #     return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
+    # end 
 end
