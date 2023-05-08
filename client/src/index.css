@@ -57,3 +57,28 @@ body {
 
 
 
+.appointment-cards {
+  padding: 20px;
+  margin: 0;
+  text-align: left;
+  list-style: none;
+}
+
+.appointment-cards h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.appointment-cards h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.appointment-cards li {
+  font-size: 16px;
+  margin-bottom: 10px;
+}

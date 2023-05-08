@@ -20,8 +20,11 @@ function AppointmentCard({ appointment, onEditClick }) {
         <Paper elevation={3}>
           <ul className="appointment-cards">
             <h3>Appointment</h3>
-            <li> Appointment with:{appointment?.doctor?.name}</li>
+            <h4>Name</h4>
+            <li>{appointment?.doctor?.name}</li>
+            <h4>Reason for Visit</h4>
             <li>{appointment.reason_for_visit} </li>
+            <h4>Date</h4>
             <li>{appointment.date_field} </li>
           </ul>
           <Button onClick={handleEditClick}>Edit</Button>
