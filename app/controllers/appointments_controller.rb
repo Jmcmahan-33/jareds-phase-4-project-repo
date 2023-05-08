@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
     before_action :find_appointment, except: [:index, :create]
+    # done
 
 
     def index 

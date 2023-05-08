@@ -1,6 +1,7 @@
 class DoctorsController < ApplicationController
     # before_action :authorize, only: [:create, :index]
     before_action :authorize
+    # done
 
 
     def index

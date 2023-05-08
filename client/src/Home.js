@@ -1,4 +1,5 @@
 // before refactor of login and signup 
+// done 
 
 import React, { useContext } from "react";
 import { UserContext } from "./context/user";
@@ -11,7 +12,7 @@ function Home() {
         return (
             <div className="text-style">
                 <h1>Welcome</h1>
-                <h2>{user.username}</h2>
+                <h2>{user.full_name}</h2>
             </div>
         )
     } else {

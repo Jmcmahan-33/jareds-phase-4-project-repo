@@ -5,5 +5,6 @@ class Appointment < ApplicationRecord
 
   validates :reason_for_visit, presence: true 
   validates :date_field, presence: true
+  # done
   
 end

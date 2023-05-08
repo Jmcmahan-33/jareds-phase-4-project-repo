@@ -3,6 +3,7 @@ class AppointmentSerializer < ActiveModel::Serializer
 
   # has_one :doctor
   has_one :user
+  # done
 end
 
 
