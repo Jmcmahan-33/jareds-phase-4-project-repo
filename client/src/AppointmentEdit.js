@@ -21,7 +21,7 @@ function AppointmentEdit({ appointment, onClose }) {
 
     if (!isEditing) {
         return (
-            <div>
+            <div className="edit-form">
                 <h2>Edit Appointment</h2>
                 <form onSubmit={handleSubmit}>
                     <input

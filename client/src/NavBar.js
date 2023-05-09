@@ -23,7 +23,7 @@ function NavBar() {
     if (loggedIn && user) {
         return (
             <div className="user-name">
-                {/* <h3>HELLO {user.username}</h3> */}
+                <h2>{user.full_name} Homepage</h2>
                 <Button variant= "text" onClick={logoutUser}>Log out</Button>
                 <NavLink to='/doctors'>
                     <Button variant="text">Browse Doctors</Button>

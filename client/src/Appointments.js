@@ -26,7 +26,7 @@ function Appointments() {
 
     const handleEditClose = () => {
         setSelectedAppointment(null);
-        setShowEditForm(false);
+        setShowEditForm(true);
     }
 
     if (loggedIn) {
@@ -40,24 +40,25 @@ function Appointments() {
             />
         )
         return (
-            <div className="appointment-list">
+            <div className="appointment-main-container">
+                  {formFlag ?
+                        <AppointmentForm addAppointmentFlag={addAppointmentFlag} />
+                        :
+                        <Button variant="contained"  onClick={() => setFormFlag(true)}>Schedule Appointment</Button>
+                    }
                 <h1 className="list-header">Appointments</h1>
                 <br />
-                <div>
-                    {showEditForm && (
+                {showEditForm && (
                         <AppointmentEdit appointment={selectedAppointment} onClose={handleEditClose} />
                     )}
+                <div>
+                    <br />
                     <Container>
                         <Grid container spacing={5}>
                             {userAppointmentList}
                         </Grid>
                     </Container>
                     <br />
-                    {formFlag ?
-                        <AppointmentForm addAppointmentFlag={addAppointmentFlag} />
-                        :
-                        <Button variant="contained"  onClick={() => setFormFlag(true)}>Schedule Appointment</Button>
-                    }
                 </div>
             </div>
         )

@@ -32,20 +32,26 @@ function Doctors() {
         )
         
         return (
-            <div className="list-container">
+            <div className="main-doc-container">
+                 {formFlag ?
+                        <DoctorForm addDoctorFlag={addDoctorFlag} />
+                        :
+                        <Button variant="contained" onClick={() => setFormFlag(true)}>Add Doctor</Button>
+                    }
                 <h1 className="list-header">Doctors</h1>
                 <br />
+               
+                    <br/>
+                    <br/>
                 <div className="doctor-container">
                     <Container>
                         <Grid container spacing={5}>
                             {doctorList}
                         </Grid>
                     </Container>
-                    {formFlag ?
-                        <DoctorForm addDoctorFlag={addDoctorFlag} />
-                        :
-                        <Button variant="contained" onClick={() => setFormFlag(true)}>Add Doctor</Button>
-                    }
+                    <br/>
+                    <br/>
+                   
 
                 </div>
 
