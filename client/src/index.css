@@ -35,13 +35,7 @@ body {
   text-align: center;
 }
 
-.nav-links {
-  padding: 15px;
-}
 
-.nav-links > * {
-  margin: 0 10px;
-}
 
 .appointment-main-container {
   padding-top: 50px;
@@ -143,33 +137,31 @@ body {
   text-align: left;
 }
 
-.user-name {
- display: flex;
- align-items: center;
- justify-content: center;
-}
-
-.user-name .username-title {
-  margin-right: 20px;
-}
-
-.user-name a {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.nav-links-container {
+.nav-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-grow: 1;
 }
+
 
 .quote {
- /* add a left border */
-  padding-left: 10px; /* add some left padding */
-  font-style: italic; /* make the text italic */
-  margin: 20px 0; /* add some vertical margin */
+  padding-left: 10px; 
+  font-style: italic; 
+  margin: 20px 0; 
 }
+
+.user-name {
+  margin-right: auto;
+}
+
+.nav-links {
+  padding: 15px;
+}
+
+.nav-links > * {
+  margin: 0 10px;
+}
+
+
+
 
 
