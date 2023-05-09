@@ -15,10 +15,6 @@ function Appointments() {
     const [showEditForm, setShowEditForm] = useState(false);
     const [selectedAppointment, setSelectedAppointment] = useState(null);
 
-
- 
-
-
     const addAppointmentFlag = () => {
         setFormFlag(false)
     }

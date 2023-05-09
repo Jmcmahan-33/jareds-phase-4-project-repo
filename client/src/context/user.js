@@ -134,6 +134,7 @@ function UserProvider({ children }) {
         setUser(user)
         fetchDoctors()
         setLoggedIn(true)
+        setErrors([])
 
     }
 
