@@ -21,18 +21,21 @@ function NavBar() {
     }
 
     if (loggedIn && user) {
-        return (
-            <div className="user-name">
-                <h2>{user.full_name} Homepage</h2>
-                <Button variant= "text" onClick={logoutUser}>Log out</Button>
-                <NavLink to='/doctors'>
-                    <Button variant="text">Browse Doctors</Button>
-                </NavLink>
-                <NavLink to='/appointments'>
-                    <Button variant="text">My Appointments</Button>
-                </NavLink>
-            </div>
-        )
+       return (
+    <div className="user-name">
+      <h2 className="username-title">{user.username} Homepage</h2>
+      <div className="nav-links-container">
+        <NavLink to='/doctors'>
+          <Button variant="text">Browse Doctors</Button>
+        </NavLink>
+        <NavLink to='/appointments'>
+          <Button variant="text">My Appointments</Button>
+        </NavLink>
+      </div>
+      <Button variant="text" onClick={logoutUser}>Log out</Button>
+    </div>
+  )
+
     } else {
         return (
             <div className="nav-links">

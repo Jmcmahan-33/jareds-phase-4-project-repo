@@ -10,13 +10,6 @@ body {
   font-family: "Arial", sans-serif;
 }
 
-.user-name {
-  text-align: center;
-  font-family: "Arial", sans-serif;
-}
-
-
-
 .list-header {
   text-align: center;
   font-weight: bold;
@@ -142,3 +135,41 @@ body {
 .appointment-add-inputs select {
   margin-bottom: 10px;
 }
+
+
+.username-title{
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.user-name {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.user-name .username-title {
+  margin-right: 20px;
+}
+
+.user-name a {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.nav-links-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.quote {
+ /* add a left border */
+  padding-left: 10px; /* add some left padding */
+  font-style: italic; /* make the text italic */
+  margin: 20px 0; /* add some vertical margin */
+}
+
+
