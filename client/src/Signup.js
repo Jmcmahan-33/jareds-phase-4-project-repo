@@ -43,7 +43,7 @@ function Signup() {
             })
     }
     const paddingStyle = { padding: 55, height: "60vh", width: 260, margin: "20px auto" }
-
+    // may remove required!
 
     return (
         <div>
@@ -52,7 +52,7 @@ function Signup() {
                     <form  onSubmit={handleSubmit}>
                         <h2>Create Account</h2>
                         <TextField
-                            fullWidth required
+                            fullWidth 
                             label="Full Name"
                             type="text"
                             id="full_name"
@@ -62,7 +62,7 @@ function Signup() {
                         <br />
                         <br />
                         <TextField
-                            fullWidth required
+                            fullWidth 
                             label="Age"
                             type="text"
                             id="age"
@@ -72,7 +72,7 @@ function Signup() {
                         <br />
                         <br />
                         <TextField
-                            fullWidth required
+                            fullWidth 
                             label="Username"
                             type="username"
                             id="username"
@@ -82,7 +82,7 @@ function Signup() {
                         <br />
                         <br />
                         <TextField
-                            fullWidth required
+                            fullWidth
                             label="password"
                             type="password"
                             id="password"
@@ -92,7 +92,7 @@ function Signup() {
                         <br />
                         <br />
                         <TextField
-                            fullWidth required
+                            fullWidth 
                             label="confirm password"
                             type="password"
                             id="confirmpassword"

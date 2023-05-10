@@ -7,22 +7,18 @@ function AppointmentForm({addAppointmentFlag}) {
     const [date, setDate] = useState("")
     const [id, setId] = useState("")
     const [submitted, setSubmitted] = useState(false)
-    const { addAppointment, doctors, user, errors, setErrors } = useContext(UserContext)
+    const { addAppointment, doctors, user, errors } = useContext(UserContext)
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!reason || !date) {
-            setErrors([...errors, "Please provide Information."])
-            return
-        }
         addAppointment({
             reason_for_visit: reason,
             date_field: date,
             doctor_id: id,
-        })
-        setSubmitted(true)
-        addAppointmentFlag()
+        }, setSubmitted, addAppointmentFlag)
+    
+
     }
 
     // const resetForm = () => {

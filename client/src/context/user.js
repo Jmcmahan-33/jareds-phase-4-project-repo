@@ -55,7 +55,7 @@ function UserProvider({ children }) {
     }
 
 
-    const addAppointment = (newAppointment) => {
+    const addAppointment = (newAppointment, setSubmitted, addAppointmentFlag) => {
         fetch('/appointments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -69,7 +69,8 @@ function UserProvider({ children }) {
                     const updatedUser = { ...user, appointments: [...user.appointments, data] }
                     setUser(updatedUser)
                     setErrors([])
-
+                    setSubmitted(true)
+                    addAppointmentFlag()
                 }
             })
             .catch(error => console.log(error))

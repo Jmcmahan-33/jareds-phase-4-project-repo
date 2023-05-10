@@ -6,8 +6,7 @@ import { Button } from "@mui/material";
 function NavBar() {
   const { user, logout, loggedIn } = useContext(UserContext)
   const navigate = useNavigate()
-
-
+  
   const logoutUser = () => {
     fetch('/logout', {
       method: "DELETE",

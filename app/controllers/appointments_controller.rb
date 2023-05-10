@@ -39,27 +39,19 @@ class AppointmentsController < ApplicationController
 
   
     private 
-    def current_user
-        # get current user through User
-        # find user id in the session hash
-        User.find_by(id: session[:user_id])
-    end
+    # def current_user
+    #     # get current user through User
+    #     # find user id in the session hash
+    #     User.find_by(id: session[:user_id])
+    # end
 
     def appointment_params
         params.permit(:date_field, :reason_for_visit, :doctor_id)
     end
-
+    # method provides users to only access their own appointments
     def find_appointment
         @appointment = @current_user.appointments.find_by(id: params[:id])
         render json: { error: "Appointment not found" }, status: :not_found unless @appointment
     end
 
 end
-
-
-
-
-
-  # def authorize
-    #     return render json: {error: "Not Authorized"}, status: :unauthorized unless session.include? :user_id
-    # end 
