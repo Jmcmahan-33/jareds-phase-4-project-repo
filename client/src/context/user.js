@@ -70,7 +70,7 @@ function UserProvider({ children }) {
                     setUser(updatedUser)
                     setErrors([])
                     setSubmitted(true)
-                    addAppointmentFlag()
+                    addAppointmentFlag(true)
                 }
             })
             .catch(error => console.log(error))

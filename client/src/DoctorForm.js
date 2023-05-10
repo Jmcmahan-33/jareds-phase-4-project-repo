@@ -23,60 +23,58 @@ function DoctorForm() {
             notes: notes
 
         })
-
-        setName("")
-        setSpeciality("")
-        setRoom("")
-        setRate("")
-        setNotes("")
     }
 
-    return (
-        <div>
-            <h1>Add Doctor</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    placeholder="name"
-                    type="text"
-                    id="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                {errors.length > 0 && <p>{errors[errors.length - 1]}</p>}
-                <input
-                    placeholder="speciality"
-                    type="text"
-                    id="speciality"
-                    value={speciality}
-                    onChange={(e) => setSpeciality(e.target.value)}
-                />
-                <input
-                    placeholder="room"
-                    type="text"
-                    id="room_number"
-                    value={room}
-                    onChange={(e) => setRoom(e.target.value)}
-                />
-                <input
-                    placeholder="rate"
-                    type="text"
-                    id="rate"
-                    value={rate}
-                    onChange={(e) => setRate(e.target.value)}
-                />
-                <input
-                    placeholder="notes"
-                    type="text"
-                    id="notes"
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
-                />
-                <button type="submit">Add Doc</button>
-            </form>
-        </div>
 
-    )
 
-}
+        return (
+            <div>
+                <h1>Add Doctor</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        placeholder="name"
+                        type="text"
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    
+                    <input
+                        placeholder="speciality"
+                        type="text"
+                        id="speciality"
+                        value={speciality}
+                        onChange={(e) => setSpeciality(e.target.value)}
+                    />
+                    <input
+                        placeholder="room"
+                        type="text"
+                        id="room_number"
+                        value={room}
+                        onChange={(e) => setRoom(e.target.value)}
+                    />
+                    <input
+                        placeholder="rate"
+                        type="text"
+                        id="rate"
+                        value={rate}
+                        onChange={(e) => setRate(e.target.value)}
+                    />
+                    <input
+                        placeholder="notes"
+                        type="text"
+                        id="notes"
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
+                    />
+                    <button type="submit">Add Doc</button>
+                    {errors}
+                </form>
+            </div>
+
+        )
+    }
+
+
 
 export default DoctorForm
