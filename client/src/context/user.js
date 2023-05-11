@@ -76,7 +76,6 @@ function UserProvider({ children }) {
     }
 
 
-
     const ondeleteAppointment = (id) => {
         const deletedAppointments = user.appointments.filter(apt => apt.id !== id)
         const updatedUser = { ...user, appointments: deletedAppointments }
@@ -93,7 +92,6 @@ function UserProvider({ children }) {
             })
             .catch(error => console.log(error))
     }
-
 
 
     const handleAppointmentInfo = (updatedAppointment) => {
@@ -149,3 +147,4 @@ function UserProvider({ children }) {
     )
 }
 export { UserContext, UserProvider }
+// final

@@ -68,11 +68,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* .doctor-cards {
-  list-style-type: none;
-  text-align: center;
-  padding: 5px;
-} */
 
 .doctor-card {
   padding: 10px;
@@ -160,6 +155,8 @@ body {
 .nav-links > * {
   margin: 0 10px;
 }
+
+/* final */
 
 
 

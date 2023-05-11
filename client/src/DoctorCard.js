@@ -18,5 +18,6 @@ function DoctorCard({ doctor }) {
 }
 
 export default DoctorCard;
+// final
 
 

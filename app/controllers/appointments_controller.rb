@@ -1,8 +1,6 @@
 class AppointmentsController < ApplicationController
     before_action :find_appointment, except: [:index, :create]
-    # done
-
-
+   
     def index 
         appointments = @current_user.appointments
         render json: appointments
@@ -20,38 +18,31 @@ class AppointmentsController < ApplicationController
     end
 
     def update
-        if @appointment
-            @appointment.update(appointment_params)
-            render json: @appointment
-        else
-            render json: {error: "Appointment not found"}, status: :not_found
-        end
+         @appointment
+         @appointment.update(appointment_params)
+         render json: @appointment
+       
     end
 
     def destroy
-        if @appointment
-            @appointment.destroy
-            head :no_content
-        else
-            render json: {error: "Appointment not found"}, status: :not_found
-        end
+        @appointment
+        @appointment.destroy
+        head :no_content
+       
     end
 
   
     private 
-    # def current_user
-    #     # get current user through User
-    #     # find user id in the session hash
-    #     User.find_by(id: session[:user_id])
-    # end
-
+ 
     def appointment_params
         params.permit(:date_field, :reason_for_visit, :doctor_id)
     end
-    # method provides users to only access their own appointments
+  
     def find_appointment
         @appointment = @current_user.appointments.find_by(id: params[:id])
         render json: { error: "Appointment not found" }, status: :not_found unless @appointment
     end
 
 end
+
+# final 

@@ -7,9 +7,6 @@ import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import { Button } from "@mui/material";
 
-
-
-// done
 function Doctors() {
     const { doctors, loggedIn } = useContext(UserContext)
     const [formFlag, setFormFlag] = useState(false)
@@ -20,40 +17,35 @@ function Doctors() {
 
     if (loggedIn) {
         const doctorList = doctors.map(doctor =>
-            
-       
+
             <DoctorCard
-                key={doctor.id} 
+                key={doctor.id}
                 doctor={doctor}
             />
         )
-        
+
         return (
             <div className="main-doc-container">
-                 {formFlag ?
-                        <DoctorForm addDoctorFlag={addDoctorFlag} />
-                        :
-                        <Button variant="contained" onClick={() => setFormFlag(true)}>Add Doctor</Button>
-                    }
+                {formFlag ?
+                    <DoctorForm addDoctorFlag={addDoctorFlag} />
+                    :
+                    <Button variant="contained" onClick={() => setFormFlag(true)}>Add Doctor</Button>
+                }
                 <h1 className="list-header">Doctors</h1>
                 <br />
-               
-                    <br/>
-                    <br/>
+
+                <br />
+                <br />
                 <div className="doctor-container">
                     <Container>
                         <Grid container spacing={5}>
                             {doctorList}
                         </Grid>
                     </Container>
-                    <br/>
-                    <br/>
-                   
-
+                    <br />
+                    <br />
                 </div>
-
             </div>
-
         )
     } else {
         return (
@@ -63,3 +55,5 @@ function Doctors() {
 }
 
 export default Doctors
+
+// final
