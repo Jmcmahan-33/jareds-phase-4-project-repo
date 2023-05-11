@@ -43,7 +43,6 @@ function UserProvider({ children }) {
             .then(res => res.json())
             .then(data => {
                 if (data.errors) {
-                    console.log("testing again", errors)
                     setErrors(data.errors)
                 } else {
                     setDoctors([...doctors, data])
@@ -100,7 +99,6 @@ function UserProvider({ children }) {
     const handleAppointmentInfo = (updatedAppointment) => {
         const updatedAppointments = user.appointments.map(apt => {
             if (apt.id === updatedAppointment.id) {
-                console.log("showid", updatedAppointment.id)
                 return updatedAppointment
             } else {
                 return apt
