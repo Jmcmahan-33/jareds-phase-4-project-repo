@@ -11,8 +11,6 @@ function UserProvider({ children }) {
     const [doctors, setDoctors] = useState([])
     const [errors, setErrors] = useState([])
 
-    console.log("ERRORS", errors)
-
     useEffect(() => {
         fetch('/me')
             .then(res => res.json())
@@ -27,9 +25,6 @@ function UserProvider({ children }) {
                 }
             })
     }, [])
-    // console.log(user.appointments)
-
-   
 
     const fetchDoctors = () => {
         fetch('/doctors')
@@ -38,9 +33,6 @@ function UserProvider({ children }) {
                 setDoctors(data)
             })
     }
-
-    // q: why aren't my errors showing up when trying to add a doctor?
-    // a:
 
     const addDoctor = (newDoctor, setSubmitted, addDoctorFlag) => {
         fetch('/doctors', {
@@ -131,8 +123,6 @@ function UserProvider({ children }) {
             .catch((error) => console.log(error));
     }
 
-    console.log("Logged In", loggedIn)
-
     const login = (user) => {
         setUser(user)
         fetchDoctors()
@@ -155,7 +145,7 @@ function UserProvider({ children }) {
     }
 
     return (
-        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, updateAppointment, deleteAppointment, errors, setErrors}}>
+        <UserContext.Provider value={{ user, login, logout, signup, loggedIn, doctors, addDoctor, addAppointment, updateAppointment, deleteAppointment, errors, setErrors }}>
             {children}
         </UserContext.Provider>
     )

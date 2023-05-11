@@ -17,7 +17,6 @@ function Doctors() {
     const addDoctorFlag = () => {
         setFormFlag(false)
     }
-    console.log("doctor", doctors)
 
     if (loggedIn) {
         const doctorList = doctors.map(doctor =>

@@ -10,11 +10,8 @@ function DoctorForm({ addDoctorFlag }) {
     const [submitted, setSubmitted] = useState(false)
     const { addDoctor, errors } = useContext(UserContext)
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
-      
         addDoctor({
             name: name,
             speciality: speciality,
@@ -24,8 +21,6 @@ function DoctorForm({ addDoctorFlag }) {
 
         }, setSubmitted, addDoctorFlag)
     }
-
-
 
     if (!submitted) {
         return (
@@ -78,11 +73,6 @@ function DoctorForm({ addDoctorFlag }) {
     }
 }
 
-
-
 export default DoctorForm
 
- 
 
-    // q: why can't I see the errors when not providing the name attribute after submitting the form?
-    // a: because the errors are being set in the context, and the context is not being updated when the form is submitted

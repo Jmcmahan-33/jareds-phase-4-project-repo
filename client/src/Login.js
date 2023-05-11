@@ -6,9 +6,6 @@ import Grid from '@mui/material/Grid';
 import { Avatar, Paper, TextField } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-// done 
-// provide useContext 
-
 function Login() {
     const [username, setUserName] = useState("")
     const [password, setPassword] = useState("")
@@ -26,7 +23,6 @@ function Login() {
         })
             .then(res => res.json())
             .then((user) => {
-                // console.log("usertesting", user)
                 if (!user.errors) {
 
                     login(user)
@@ -40,7 +36,6 @@ function Login() {
             })
 
     }
-    // console.log("login error", error)
 
     const paddingStyle = { padding: 20, height: "40vh", width: 260, margin: "20px auto" }
     const avatarStyle = { backgroundColor: "blue" }

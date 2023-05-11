@@ -43,8 +43,7 @@ function Signup() {
             })
     }
     const paddingStyle = { padding: 55, height: "60vh", width: 260, margin: "20px auto" }
-    // may remove required!
-
+ 
     return (
         <div>
             <Grid>
