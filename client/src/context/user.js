@@ -11,6 +11,8 @@ function UserProvider({ children }) {
     const [doctors, setDoctors] = useState([])
     const [errors, setErrors] = useState([])
 
+    console.log("ERRORS", errors)
+
     useEffect(() => {
         fetch('/me')
             .then(res => res.json())
@@ -27,6 +29,7 @@ function UserProvider({ children }) {
     }, [])
     // console.log(user.appointments)
 
+   
 
     const fetchDoctors = () => {
         fetch('/doctors')
@@ -36,7 +39,10 @@ function UserProvider({ children }) {
             })
     }
 
-    const addDoctor = (newDoctor) => {
+    // q: why aren't my errors showing up when trying to add a doctor?
+    // a:
+
+    const addDoctor = (newDoctor, setSubmitted, addDoctorFlag) => {
         fetch('/doctors', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -45,15 +51,17 @@ function UserProvider({ children }) {
             .then(res => res.json())
             .then(data => {
                 if (data.errors) {
+                    console.log("testing again", errors)
                     setErrors(data.errors)
                 } else {
                     setDoctors([...doctors, data])
                     setErrors([])
+                    setSubmitted(true)
+                    addDoctorFlag(true)
                 }
             })
             .catch(error => console.log(error))
     }
-
 
     const addAppointment = (newAppointment, setSubmitted, addAppointmentFlag) => {
         fetch('/appointments', {
@@ -95,12 +103,6 @@ function UserProvider({ children }) {
             .catch(error => console.log(error))
     }
 
-    // const deleteAppointment = (id) => { 
-    //     fetch(`/appointments/${id}`, {
-    //         method: "DELETE",
-    //     })
-    //         .then(setUser({...user,appointments: [...user.appointments.filter(appointment => appointment.id !== id)]}))
-    // }
 
 
     const handleAppointmentInfo = (updatedAppointment) => {

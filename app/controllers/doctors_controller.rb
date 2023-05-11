@@ -9,7 +9,7 @@ class DoctorsController < ApplicationController
     end 
 
     def create 
-        doctor = Doctor.create(doctor_params)
+        doctor = Doctor.create!(doctor_params)
         render json: doctor, status: :created
     end
 

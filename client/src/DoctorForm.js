@@ -1,20 +1,20 @@
 import React, { useContext, useState } from "react"
 import { UserContext } from "./context/user"
 // done
-function DoctorForm() {
+function DoctorForm({ addDoctorFlag }) {
     const [name, setName] = useState("")
     const [speciality, setSpeciality] = useState("")
     const [room, setRoom] = useState("")
     const [rate, setRate] = useState("")
     const [notes, setNotes] = useState("")
-    const { addDoctor, errors, setErrors } = useContext(UserContext)
+    const [submitted, setSubmitted] = useState(false)
+    const { addDoctor, errors } = useContext(UserContext)
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!name) {
-            setErrors([...errors, "Please provide Information."])
-            return
-        }
+      
         addDoctor({
             name: name,
             speciality: speciality,
@@ -22,11 +22,12 @@ function DoctorForm() {
             rate: rate,
             notes: notes
 
-        })
+        }, setSubmitted, addDoctorFlag)
     }
 
 
 
+    if (!submitted) {
         return (
             <div>
                 <h1>Add Doctor</h1>
@@ -38,7 +39,7 @@ function DoctorForm() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
-                    
+
                     <input
                         placeholder="speciality"
                         type="text"
@@ -71,10 +72,17 @@ function DoctorForm() {
                     {errors}
                 </form>
             </div>
-
         )
+    } else {
+        return null
     }
+}
 
 
 
 export default DoctorForm
+
+ 
+
+    // q: why can't I see the errors when not providing the name attribute after submitting the form?
+    // a: because the errors are being set in the context, and the context is not being updated when the form is submitted
