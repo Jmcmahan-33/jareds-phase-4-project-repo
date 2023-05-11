@@ -8,7 +8,6 @@ import Signup from './Signup'
 import Login from './Login'
 import Doctors from './Doctors';
 import Appointments from './Appointments';
-import AppointmentEdit from './AppointmentEdit';
 import Header from './Header';
 // done
 function App() {
@@ -25,7 +24,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/appointments" element={<Appointments/>} />
-          <Route path="/edit-form" element={<AppointmentEdit/>} />
         </Routes>
 
       </UserProvider>
