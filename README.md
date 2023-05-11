@@ -1,4 +1,4 @@
-# My Health App
+# HealthTrack
 
 
 ## Description
