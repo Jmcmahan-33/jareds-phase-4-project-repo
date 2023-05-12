@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  # get "/appointments/by_doctor/:doctor_id", to: "appointments#by_doctor"
   resources :appointments
   resources :users
   resources :doctors
@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   # final
-
-  
-  # get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
+
+# get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

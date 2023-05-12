@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
     before_action :find_appointment, except: [:index, :create]
+    # skip_before_action :authorize, only: [:by_doctor]
    
     def index 
         appointments = @current_user.appointments
@@ -30,7 +31,11 @@ class AppointmentsController < ApplicationController
         head :no_content
        
     end
-
+    # def by_doctor
+    #     doctor_id = params[:doctor_id]
+    #     appointments = @current_user.appointments.where(doctor_id: doctor_id)
+    #     render json: appointments
+    #   end
   
     private 
  

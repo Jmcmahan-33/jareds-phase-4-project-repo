@@ -1,10 +1,12 @@
 // done
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const UserContext = React.createContext();
 
 function UserProvider({ children }) {
+    const location = useLocation()
+    console.log(location)
     const navigate = useNavigate()
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
@@ -25,6 +27,10 @@ function UserProvider({ children }) {
                 }
             })
     }, [])
+
+    useEffect(() => {
+        setErrors([])
+    }, [location.pathname])
 
     const fetchDoctors = () => {
         fetch('/doctors')
