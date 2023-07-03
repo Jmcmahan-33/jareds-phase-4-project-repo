@@ -21,6 +21,8 @@ function AppointmentForm({ addAppointmentFlag }) {
       addAppointmentFlag
     )
   }
+  // q: where is addAppointmentFlag coming from?
+  
 
   const removeDuplicates = (duplicates) => {
     const flag = {};

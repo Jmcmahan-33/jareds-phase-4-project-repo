@@ -1,7 +1,22 @@
 class AppointmentsController < ApplicationController
     before_action :find_appointment, except: [:index, :create]
-    # skip_before_action :authorize, only: [:by_doctor]
-   
+    # skip_before_action :authorize, only: [:appointments_with_mutant]
+    # def appointments_with_mutant
+    #     user = User.find_by(params[:id])
+    #     appointments = user.appointments.filter {|a| a.reason_for_visit.include?("Mutant")}
+    #     render json: appointments 
+    # end 
+     # want to see appointments that belong to the user that has the word "Mutant"  in  reason for visit
+
+
+
+
+# sessions talk about cookies
+# Authenticate method
+# bcrypt
+
+
+
     def index 
         appointments = @current_user.appointments
         render json: appointments
@@ -25,18 +40,15 @@ class AppointmentsController < ApplicationController
        
     end
 
+
     def destroy
         @appointment
         @appointment.destroy
         head :no_content
        
     end
-    # def by_doctor
-    #     doctor_id = params[:doctor_id]
-    #     appointments = @current_user.appointments.where(doctor_id: doctor_id)
-    #     render json: appointments
-    #   end
-  
+
+
     private 
  
     def appointment_params
@@ -50,4 +62,11 @@ class AppointmentsController < ApplicationController
 
 end
 
-# final 
+  
+    
+    
+   
+  
+
+
+   

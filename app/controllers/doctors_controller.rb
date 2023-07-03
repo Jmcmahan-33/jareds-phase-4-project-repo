@@ -1,6 +1,7 @@
 class DoctorsController < ApplicationController
     before_action :authorize
-
+   
+   
     def index
         doctors = Doctor.all
         render json: doctors
@@ -11,6 +12,8 @@ class DoctorsController < ApplicationController
         render json: doctor, status: :created
     end
 
+  
+
     private
 
     def doctor_params
@@ -18,4 +21,9 @@ class DoctorsController < ApplicationController
     end 
 
 end
-# final
+
+
+
+ 
+    
+   

@@ -6,7 +6,6 @@ const UserContext = React.createContext();
 
 function UserProvider({ children }) {
     const location = useLocation()
-    console.log(location)
     const navigate = useNavigate()
     const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
